@@ -11,7 +11,7 @@
 
 nav:
   # Navigation bar logo image
-  logo: /img/logo.jpg
+  logo: /img/logo.png
   display_title: true
   # Whether to fix navigation bar
   fixed: false
@@ -61,7 +61,7 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /img/avatar.jpg
+  img: /img/avatar.png
   effect: false
 
 # Disable all banner images
@@ -290,7 +290,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/EmptyDust
   card_announcement:
     enable: true
     content: This is my Blog
