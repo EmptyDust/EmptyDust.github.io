@@ -61,7 +61,7 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /img/avatar.png
+  img: https://www.helloimg.com/i/2024/12/28/676fa53a9c318.png
   effect: false
 
 # Disable all banner images
@@ -155,7 +155,7 @@ index_top_img_height:
 subtitle:
   enable: false
   # Typewriter Effect
-  effect: true
+  effect: trueimg
   # Customize typed.js
   # https://github.com/mattboldt/typed.js/#customization
   typed_option:
