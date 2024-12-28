@@ -1,6 +1,6 @@
 ---
 title: Mandelbrot_Set
-date: 2024-12-28 21:22:35
+date: 2024-01-10 16:12:35
 tags: 'homework'
 ---
 
