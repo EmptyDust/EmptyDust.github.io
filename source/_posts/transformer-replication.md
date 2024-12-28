@@ -1,7 +1,7 @@
 ---
 title: transformer_replication
 date: 2024-12-28 17:15:46
-tags:
+tags: '机器学习'
 ---
 
 # 复现transformer
