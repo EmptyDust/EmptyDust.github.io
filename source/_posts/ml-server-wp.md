@@ -1,7 +1,9 @@
 ---
 title: ml_server_wp
 date: 2024-12-28 10:26:21
-tags:
+tags: '机器学习'
+categories: catag_test
+keywords: ['ML','DL','shell']
 ---
 
 
