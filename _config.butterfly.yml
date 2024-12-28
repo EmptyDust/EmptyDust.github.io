@@ -105,3 +105,6 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
+# git remote add origin git@github.com:EmptyDust/EmptyDust.github.io.git
