@@ -11,7 +11,7 @@
 
 nav:
   # Navigation bar logo image
-  logo: /img/logo.png
+  logo: https://www.helloimg.com/i/2024/12/28/676fa53a9c318.png
   display_title: true
   # Whether to fix navigation bar
   fixed: false
