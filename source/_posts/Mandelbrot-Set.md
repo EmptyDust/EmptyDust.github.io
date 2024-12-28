@@ -1,7 +1,7 @@
 ---
 title: Mandelbrot_Set
 date: 2024-12-28 21:22:35
-tags:
+tags: 'homework'
 ---
 
 # 曼德布罗集 Mandelbrot Set
