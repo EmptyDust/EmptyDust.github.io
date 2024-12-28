@@ -153,9 +153,9 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
-  effect: trueimg
+  effect: true
   # Customize typed.js
   # https://github.com/mattboldt/typed.js/#customization
   typed_option:
@@ -169,6 +169,9 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
+  - 多年以后，你是否依然
+  - 魔法改变世界
+  - 珂朵莉是世界上最美好的女孩子
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
