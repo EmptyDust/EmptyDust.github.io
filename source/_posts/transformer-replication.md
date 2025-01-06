@@ -36,13 +36,22 @@ export HF_ENDPOINT=https://hf-mirror.com
 ```py
 from datasets import load_dataset
 
+
 ds = load_dataset("wmt/wmt14", "de-en")
+
+print(ds)
+
+print(ds['train'][0:5])
 ```
 
 数据集下载在了
 ```
 ~/.cache/huggingface/datasets/wmt___wmt14/
 ```
+
+[本地配置](https://blog.csdn.net/CoolBoySilverBullet/article/details/123365452)
+
+## day2 
 
 # inference
 [hf-mirror （huggingface 的国内镜像）](https://blog.csdn.net/weixin_40959890/article/details/140319652)
