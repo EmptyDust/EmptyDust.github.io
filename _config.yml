@@ -104,4 +104,6 @@ theme: anzhiyu
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:你的用户名/你的用户名.github.io.git
+  branch: main
