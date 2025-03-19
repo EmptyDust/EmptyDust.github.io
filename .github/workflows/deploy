@@ -1,0 +1,60 @@
+name: 自动部署
+
+on:
+  push:
+    branches:
+      - main # 或你的主分支
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Timezone
+        run: export TZ='Asia/Shanghai'
+
+      - name: 检查分支
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: 安装 Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: 缓存 Hexo
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: 安装依赖
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: |
+          npm install gulp-cli -g
+          npm ci
+
+      - name: 生成静态文件
+        run: |
+          npx hexo clean
+          npx hexo bangumi -u #bilibili番剧更新
+          npx hexo generate
+          npx hexo algolia
+          gulp
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public # Hexo 生成的静态文件存放目录
