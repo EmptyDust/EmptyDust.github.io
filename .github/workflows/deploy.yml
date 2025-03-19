@@ -1,0 +1,84 @@
+name: 自动部署
+on:
+  push:
+    branches:
+      - master
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查分支
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Sync local file timestamps
+        run: |
+          git ls-files -z | while read -d '' path; do touch -d $(git log -1 --format="@%ct" "$path") "$path"; done
+
+      - name: 安装 Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: 安装 Hexo
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install hexo-cli -g
+
+      - name: 缓存 Hexo
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: 安装依赖
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: |
+          npm install gulp-cli -g #全局安装gulp
+          npm install --save
+
+      - name: 生成静态文件
+        run: |
+          hexo clean
+          hexo bangumi -u #bilibili番剧更新
+          hexo generate
+          hexo algolia
+          gulp
+
+      # - name: Deploy to Server
+      #   uses: easingthemes/ssh-deploy@v2
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     ARGS: "-rltgoDzvO --delete"
+      #     EXCLUDE: ".well-known"
+      #     SOURCE: "./public/*"
+      #     REMOTE_HOST: ${{ secrets.SERVER_IP }}
+      #     REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+      #     REMOTE_USER: "你的用户名"
+      #     TARGET: "你的服务器绝对路径"
+
+      # - name: 推送百度必应url
+      #   run: |
+      #     hexo deploy
+
+      - name: 部署到Github
+        run: |
+          cd ./public
+          git init
+          git config --global user.name "EmptyDust"
+          git config --global user.email "1422492074@qq.com"
+          git add .
+          git commit -m '${{ github.event.head_commit.message }}'
+          git push --force --all https://git@github.com:EmptyDust/EmptyDust.github.io.git
