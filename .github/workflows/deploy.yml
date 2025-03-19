@@ -24,7 +24,7 @@ jobs:
       - name: 安装 Node
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: "22.x"
 
       - name: 缓存 Hexo
         id: cache-npm
@@ -44,13 +44,14 @@ jobs:
         run: |
           npm install gulp-cli -g
           npm ci
+          # npm install hexo-algolia --save
 
       - name: 生成静态文件
         run: |
           npx hexo clean
           npx hexo bangumi -u #bilibili番剧更新
           npx hexo generate
-          npx hexo algolia
+          # npx hexo algolia
           gulp
 
       - name: Deploy to GitHub Pages
