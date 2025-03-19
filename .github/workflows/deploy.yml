@@ -52,7 +52,7 @@ jobs:
           npx hexo bangumi -u #bilibili番剧更新
           npx hexo generate
           # npx hexo algolia
-          gulp
+          # gulp
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
