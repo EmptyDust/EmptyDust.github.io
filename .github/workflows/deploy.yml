@@ -50,6 +50,13 @@ jobs:
           npm ci
           # npm install hexo-algolia --save
 
+      - name: 安装 Anzhiyu 主题
+        run: |
+          git clone -b main https://github.com/anzhiyu-c/hexo-theme-anzhiyu.git themes/anzhiyu
+          npm install hexo-renderer-pug hexo-renderer-stylus --save
+          npm install
+          # 如果你的主题有其他依赖，也在这里安装
+
       - name: 生成静态文件
         run: |
           npx hexo clean
