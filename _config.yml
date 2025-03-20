@@ -4,16 +4,16 @@
 
 # Site
 title: Fengling's Blog
-subtitle: '念念不忘，必有回响'
-description: '魔法改变世界'
-keywords: 
+subtitle: "念念不忘，必有回响"
+description: "魔法改变世界"
+keywords:
 author: 风铃夜行
 language: zh-CN
-timezone: 'Asia/Shanghai'
+timezone: "Asia/Shanghai"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://www.emptydust.com/
+url: https://emptydust.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -38,31 +38,34 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 prismjs:
   enable: false
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -82,7 +85,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: "mtime"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -100,10 +103,9 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: anzhiyu
 
-
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:你的用户名/你的用户名.github.io.git
+  repo: git@github.com:EmptyDust/EmptyDust.github.io/.git
   branch: main
