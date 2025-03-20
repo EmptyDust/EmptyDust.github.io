@@ -66,7 +66,7 @@ copy:
 # formal:
 #   name: link || icon
 social:
-  # Github: https://github.com/anzhiyu-c || anzhiyu-icon-github
+  Github: https://github.com/EmptyDust
   # BiliBili: https://space.bilibili.com/372204786 || anzhiyu-icon-bilibili
 
 # 作者卡片 状态
@@ -140,16 +140,16 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: https://imgur.com/wnla2Su
+  img: /img/avatar.png
   effect: false
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: "background: url('https://imgur.com/NCRLYSz') top / cover no-repeat"
+index_img: "background: url('https://bu.dusays.com/2025/03/20/67dbbc662948f.png') top / cover no-repeat"
 # If the banner of page not setting, it will show the top_img
-default_top_img: https://imgur.com/NCRLYSz
+default_top_img: https://bu.dusays.com/2025/03/20/67dbbc5e48863.jpg
 
 cover:
   # display the cover or not (是否显示文章封面)
@@ -158,10 +158,10 @@ cover:
   archives_enable: true
   # the position of cover in home page (封面显示的位置)
   # left/right/both
-  position: left
+  position: both
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    # - /img/default_cover.jpg
+    - /img/default_cover.jpg
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -176,18 +176,18 @@ error_404:
 
 post_meta:
   page: # Home Page
-    date_type: created # created or updated or both 主页文章日期是创建日或者更新日或都显示
+    date_type: both # created or updated or both 主页文章日期是创建日或者更新日或都显示
     date_format: simple # date/relative/simple 显示日期还是相对日期 或者 简单日期
     categories: true # true or false 主页是否显示分类
     tags: true # true or false 主页是否显示标籤
-    label: false # true or false 显示描述性文字
+    label: true # true or false 显示描述性文字
   post:
     date_type: both # created or updated or both 文章页日期是创建日或者更新日或都显示
     date_format: date # date/relative 显示日期还是相对日期
     categories: true # true or false 文章页是否显示分类
     tags: true # true or false 文章页是否显示标籤
     label: true # true or false 显示描述性文字
-    unread: false # true or false 文章未读功能
+    unread: true # true or false 文章未读功能
 
 # 主色调相关配置
 mainTone:
@@ -233,7 +233,7 @@ post_copyright:
   enable: true
   decode: false
   author_href:
-  location: 长沙
+  location: 上海
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
   avatarSinks: false # hover时头像下沉
@@ -243,7 +243,7 @@ post_copyright:
 
 # Sponsor/reward
 reward:
-  enable: true
+  enable: false
   QR_code:
     - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png
       link:
@@ -269,7 +269,7 @@ post_edit: # 目前仅可选择一个平台在线编辑
 related_post:
   enable: true
   limit: 6 # Number of posts displayed
-  date_type: created # or created or updated 文章日期显示创建日或者更新日
+  date_type: updated # or created or updated 文章日期显示创建日或者更新日
 
 # figcaption (图片描述文字)
 photofigcaption: false
@@ -285,7 +285,7 @@ post_pagination: 2
 
 # Displays outdated notice for a post (文章过期提醒)
 noticeOutdate:
-  enable: false
+  enable: true
   style: flat # style: simple/flat
   limit_day: 365 # When will it be shown
   position: top # position: top/bottom
