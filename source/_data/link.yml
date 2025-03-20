@@ -23,6 +23,14 @@
       siteshot: https://npm.elemecdn.com/anzhiyu-theme-static@1.1.6/img/blog.anheyu.com.jpg
       color: vip
       tag: 技术
+    - name: Rougamo
+      link: https://rougamorika.github.io
+      avatar: https://bu.dusays.com/2025/03/20/67dbd4bb807e5.jpg
+      descr: 一起开启新概念电信
+      recommend: true
+      siteshot: https://bu.dusays.com/2025/03/20/67dbd4bb807e5.jpg
+      color: vip
+      tag: 数学
 
 - class_name: 小伙伴
   class_desc: 那些人，那些事
@@ -33,4 +41,9 @@
       link: https://blog.anheyu.com/
       avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg
       descr: 生活明朗，万物可爱
+      recommend: true
+    - name: Rougamo
+      link: https://rougamorika.github.io
+      avatar: https://bu.dusays.com/2025/03/20/67dbd4bb807e5.jpg
+      descr: 一起开启新概念电信
       recommend: true
