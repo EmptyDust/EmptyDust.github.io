@@ -1,13 +1,13 @@
 menu:
-  # 文章:
-  #   隧道: /archives/ || anzhiyu-icon-box-archive
-  #   分类: /categories/ || anzhiyu-icon-shapes
-  #   标签: /tags/ || anzhiyu-icon-tags
+  文章:
+    隧道: /archives/ || anzhiyu-icon-box-archive
+    分类: /categories/ || anzhiyu-icon-shapes
+    标签: /tags/ || anzhiyu-icon-tags
 
   友链:
     友人帐: /link/ || anzhiyu-icon-link
-  #   朋友圈: /fcircle/ || anzhiyu-icon-artstation
-  #   留言板: /comments/ || anzhiyu-icon-envelope
+    朋友圈: /fcircle/ || anzhiyu-icon-artstation
+    # 留言板: /comments/ || anzhiyu-icon-envelope
 
   # 我的:
   #   音乐馆: /music/ || anzhiyu-icon-music
@@ -16,7 +16,7 @@ menu:
   #   小空调: /air-conditioner/ || anzhiyu-icon-fan
 
   关于:
-    #   关于本人: /about/ || anzhiyu-icon-paper-plane
+    关于本人: /about/ || anzhiyu-icon-paper-plane
     闲言碎语: /essay/ || anzhiyu-icon-lightbulb
   #   随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
 
@@ -29,13 +29,13 @@ nav:
     - title: 网页
       item:
         - name: 博客
-          link: https://blog.anheyu.com/
+          link: https://www.emptydust.com/
           icon: /img/favicon.ico
-    - title: 项目
-      item:
-        - name: 安知鱼图床
-          link: https://image.anheyu.com/
-          icon: https://image.anheyu.com/favicon.ico
+    # - title: 项目
+    #   item:
+    #     - name: 安知鱼图床
+    #       link: https://image.anheyu.com/
+    #       icon: https://image.anheyu.com/favicon.ico
 
 # mourn （哀悼日，指定日期网站简单变灰，不包括滚动条）
 # 注意： 仅网站首页变灰，其他页面正常显示
@@ -140,7 +140,7 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: /img/avatar.png
+  img: https://bu.dusays.com/2025/03/20/67dbbc5c11145.png
   effect: false
 
 # Disable all banner image
@@ -161,7 +161,7 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    - /img/default_cover.jpg
+    - https://bu.dusays.com/2025/03/20/67dbbc4e84f02.png
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -459,67 +459,67 @@ footer:
     enable: false
     centerImg:
     left:
-      # - title: email
-      #   link: mailto:anzhiyu-c@qq.com
-      #   icon: anzhiyu-icon-envelope
-      # - title: 微博
-      #   link: https://weibo.com/u/6378063631
-      #   icon: anzhiyu-icon-weibo
-      # - title: facebook
-      #   link: https://www.facebook.com/profile.php?id=100092208016287&sk=about
-      #   icon: anzhiyu-icon-facebook1
+      - title: email
+        link: mailto:anzhiyu-c@qq.com
+        icon: anzhiyu-icon-envelope
+      - title: 微博
+        link: https://weibo.com/u/6378063631
+        icon: anzhiyu-icon-weibo
+      - title: facebook
+        link: https://www.facebook.com/profile.php?id=100092208016287&sk=about
+        icon: anzhiyu-icon-facebook1
       # - title: RSS
       #   link: atom.xml
       #   icon: anzhiyu-icon-rss
     right:
-      # - title: Github
-      #   link: https://github.com/anzhiyu-c
-      #   icon: anzhiyu-icon-github
-      # - title: Bilibili
-      #   link: https://space.bilibili.com/372204786
-      #   icon: anzhiyu-icon-bilibili
-      # - title: 抖音
-      #   link: https://v.douyin.com/DwCpMEy/
-      #   icon: anzhiyu-icon-tiktok
-      # - title: CC
-      #   link: /copyright
-      #   icon: anzhiyu-icon-copyright-line
+      - title: Github
+        link: https://github.com/anzhiyu-c
+        icon: anzhiyu-icon-github
+      - title: Bilibili
+        link: https://space.bilibili.com/372204786
+        icon: anzhiyu-icon-bilibili
+      - title: 抖音
+        link: https://v.douyin.com/DwCpMEy/
+        icon: anzhiyu-icon-tiktok
+      - title: CC
+        link: /copyright
+        icon: anzhiyu-icon-copyright-line
   list:
-    enable: false
+    enable: true
     randomFriends: 3
     project:
-      # - title: 服务
-      #   links:
-      #     - title: 51la统计
-      #       link: https://v6.51.la/
-      #     - title: 十年之约
-      #       link: https://www.foreverblog.cn/
-      #     - title: 开往
-      #       link: https://github.com/travellings-link/travellings
-      # - title: 主题
-      #   links:
-      #     - title: 文档
-      #       link: /docs/
-      #     - title: 源码
-      #       link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
-      #     - title: 更新日志
-      #       link: /update/
-      # - title: 导航
-      #   links:
-      #     - title: 即刻短文
-      #       link: /essay/
-      #     - title: 友链文章
-      #       link: /fcircle/
-      #     - title: 留言板
-      #       link: /comments/
-      # - title: 协议
-      #   links:
-      #     - title: 隐私协议
-      #       link: /privacy/
-      #     - title: Cookies
-      #       link: /cookies/
-      #     - title: 版权协议
-      #       link: /copyright/
+      - title: 服务
+        links:
+          - title: 51la统计
+            link: https://v6.51.la/
+          - title: 十年之约
+            link: https://www.foreverblog.cn/
+          - title: 开往
+            link: https://github.com/travellings-link/travellings
+      - title: 主题
+        links:
+          - title: 文档
+            link: /docs/
+          - title: 源码
+            link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
+          - title: 更新日志
+            link: /update/
+      - title: 导航
+        links:
+          - title: 即刻短文
+            link: /essay/
+          - title: 友链文章
+            link: /fcircle/
+          - title: 留言板
+            link: /comments/
+      - title: 协议
+        links:
+          - title: 隐私协议
+            link: /privacy/
+          - title: Cookies
+            link: /cookies/
+          - title: 版权协议
+            link: /copyright/
   footerBar:
     enable: true
     authorLink: /
@@ -531,10 +531,10 @@ footer:
         text: 主题
       # - link: https://image.anheyu.com
       #   text: 图床
-      # - link: https://beian.miit.gov.cn/
-      #   text: 湘ICP备-xxxxxxx号
+      - link: https://beian.miit.gov.cn/
+        text: 沪ICP备-xxxxxxx号
     subTitle:
-      enable: false
+      enable: true
       # Typewriter Effect (打字效果)
       effect: true
       # Effect Speed Options (打字效果速度参数)
@@ -718,11 +718,11 @@ click_heart:
 
 # Mouse click effects: words (鼠标点击效果: 文字)
 ClickShowText:
-  enable: false
+  enable: true
   text:
-    # - I
-    # - LOVE
-    # - YOU
+    - I
+    - LOVE
+    - YOU
   fontSize: 15px
   random: false
   mobile: false
@@ -760,7 +760,7 @@ hr_icon:
 
 # the subtitle on homepage (主页subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Effect Speed Options (打字效果速度参数)
@@ -775,10 +775,17 @@ subtitle:
   # source: 2  调用一句网（简体） http://yijuzhan.com/
   # source: 3  调用今日诗词（简体） https://www.jinrishici.com/
   # subtitle 会先显示 source , 再显示 sub 的内容
-  source: 1
+  source: false
   # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
   sub:
-    # - 生活明朗&#44;万物可爱&#44;人间值得&#44;未来可期.
+    - 多年以后&#44;你是否依然.
+    - 生活明朗&#44;万物可爱&#44;人间值得&#44;未来可期.
+    - 人生如梦&#44;一尊还酹江月.
+    - 念念不忘&#44;必有回响.
+    - 人生南北多歧路&#44;君向潇湘我向秦.
+    - 现在我成了Mortis&#44;乐队的终结者.
+    - 喜悲俱往矣&#44;当时只道匆.
+    - 为了纪念&#44;更为了忘记.
 
 # Loading Animation (加载动画)
 preloader:
@@ -851,9 +858,9 @@ aside:
 # busuanzi count for PV / UV in site
 # 访问人数
 busuanzi:
-  site_uv: false
-  site_pv: false
-  page_pv: false
+  site_uv: true
+  site_pv: true
+  page_pv: true
 
 # Time difference between publish date and now (网页运行时间)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
@@ -1018,7 +1025,7 @@ pangu:
 # Lazyload (图片懒加载)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: true
+  enable: false
   field: site # site/post
   placeholder:
   blur: true
@@ -1053,8 +1060,8 @@ home_top:
   subTitle: 万物可爱。
   siteText: anheyu.com
   category:
-    - name: 前端
-      path: /categories/前端开发/
+    - name: 算竞
+      path: /categories/算法竞赛/
       shadow: var(--anzhiyu-shadow-blue)
       class: blue
       icon: anzhiyu-icon-dove
@@ -1081,11 +1088,11 @@ home_top:
 
 # 朋友圈配置
 friends_vue:
-  enable: false
+  enable: true
   vue_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.1.1/friends/index.4f887d95.js
   apiurl: # 朋友圈后端地址
   top_tips: 使用 友链朋友圈 订阅友链最新文章
-  top_background:
+  top_background: https://bu.dusays.com/2025/03/20/67dbbc587df70.jpg
 
 # 深色模式粒子效果canvas
 universe:
