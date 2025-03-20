@@ -1,3 +1,0 @@
-var posts=["2025/01/06/20250106/","2025/01/20/20250120/","2025/01/11/20250113/","2025/02/19/20250219/","2025/03/10/20250312/","2025/03/05/20250305/","2023/12/19/cf1913D/","2023/12/25/cf1902E/","2024/12/28/hello-world/","2024/01/10/Mandelbrot-Set/","2024/12/28/transformer-replication/","2024/10/08/xcpc-one-year-achieve/","2024/12/28/ml-server-wp/"];function toRandomPost(){
-    pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
-  };
