@@ -529,10 +529,10 @@ footer:
     linkList:
       - link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
         text: 主题
-      # - link: https://image.anheyu.com
-      #   text: 图床
+      - link: https://7bu.top/
+        text: 图床
       - link: https://beian.miit.gov.cn/
-        text: 沪ICP备-xxxxxxx号
+        text: 沪ICP备2025118581号-1
     subTitle:
       enable: true
       # Typewriter Effect (打字效果)
