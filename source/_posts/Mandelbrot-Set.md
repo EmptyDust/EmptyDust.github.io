@@ -2,6 +2,8 @@
 title: Mandelbrot_Set
 date: 2024-01-10 16:12:35
 tags: 'homework'
+categories: '大学生涯'
+cover: https://bu.dusays.com/2025/03/27/67e4bc6a6425d.jpg
 ---
 
 # 曼德布罗集 Mandelbrot Set

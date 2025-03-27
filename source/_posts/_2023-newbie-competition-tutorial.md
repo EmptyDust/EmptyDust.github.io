@@ -2,6 +2,8 @@
 title: 2023_newbie_competition_tutorial
 date: 2024-12-28 21:33:12
 tags: 'icpc'
+categories: '算法竞赛'
+cover: https://bu.dusays.com/2025/03/25/67e241c58c28d.jpg
 ---
 
 # 上海电力大学程序设计迎新赛题解 by suepacm

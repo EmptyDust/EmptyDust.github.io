@@ -2,8 +2,9 @@
 title: ml_server_wp
 date: 2024-12-28 10:26:21
 tags: '机器学习'
-categories: catag_test
+categories: '大学生涯'
 keywords: ['ML','DL','shell']
+cover: https://bu.dusays.com/2025/03/27/67e4bc6a425ed.jpg
 ---
 
 
