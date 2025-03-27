@@ -1,6 +1,2 @@
 # EmptyDust.github.io
-Fengling's free website.
-
-## not free now
-
-##
+Fengling's not free website.
