@@ -147,7 +147,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: "background: url('https://bu.dusays.com/2025/03/20/67dbbc662948f.png') top / cover no-repeat"
+index_img: "background: url('https://bu.dusays.com/2025/03/21/67dc3ca22d617.jpg') top / cover no-repeat"
 # If the banner of page not setting, it will show the top_img
 default_top_img: https://bu.dusays.com/2025/03/20/67dbbc5e48863.jpg
 

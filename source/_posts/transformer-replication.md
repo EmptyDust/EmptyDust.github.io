@@ -2,6 +2,7 @@
 title: transformer_replication
 date: 2024-12-28 17:15:46
 tags: '机器学习'
+cover: https://bu.dusays.com/2025/04/02/67ecc4815a980.jpg
 ---
 
 # 复现transformer
