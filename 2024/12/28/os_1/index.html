@@ -1,0 +1,1204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>OS_turital | Fengling's Blog</title><meta name="keywords" content="icpc"><meta name="author" content="风铃夜行"><meta name="copyright" content="风铃夜行"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="OS_turital"><meta name="application-name" content="OS_turital"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="OS_turital"><meta property="og:url" content="https://emptydust.github.io/2024/12/28/os_1/index.html"><meta property="og:site_name" content="Fengling's Blog"><meta property="og:description" content="1. 离散存储管理方式描述 (分页、分段、段页式)离散存储管理允许将一个进程的地址空间分散地存放到内存的多个不一定连续的物理区域中。这克服了连续分配的主要缺点——外部碎片。 a) 分页式存储管理 (Paging) 基本思想: 将进程的逻辑地址空间划分为大小相等的页 (Page)。 将物理内存划分为与"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://bu.dusays.com/2025/04/17/6801139c15a01.jpg"><meta property="article:author" content="风铃夜行"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://bu.dusays.com/2025/04/17/6801139c15a01.jpg"><meta name="description" content="1. 离散存储管理方式描述 (分页、分段、段页式)离散存储管理允许将一个进程的地址空间分散地存放到内存的多个不一定连续的物理区域中。这克服了连续分配的主要缺点——外部碎片。 a) 分页式存储管理 (Paging) 基本思想: 将进程的逻辑地址空间划分为大小相等的页 (Page)。 将物理内存划分为与"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://emptydust.github.io/2024/12/28/os_1/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2024/07/27/125766904/ba62475f396df9de3316a08ed9e65d86_5680958632268053399..png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":null},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏃 脚踏实地行动派","🧱 团队小组发动机"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 风铃夜行","link":"链接: ","source":"来源: Fengling's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: {"enable":true,"delay":100,"shiftDelay":200},
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Fengling's Blog',
+  title: 'OS_turital',
+  postAI: '',
+  pageFillDescription: '1. 离散存储管理方式描述 (分页、分段、段页式), a) 分页式存储管理 (Paging), b) 分段式存储管理 (Segmentation), c) 段页式存储管理 (Segmented Paging), 2. 不同存储管理方式的比较及演变过程, 演变过程与原因：, 比较总结表：, 3. (重点) 逻辑地址到物理地址的地址变换 (实验、计算), a) 分页式地址变换示例, b) 分段式地址变换示例, c) 段页式地址变换示例, 4. (难点) 分页管理性能分析, EAT 计算公式：, 性能分析关键点：离散存储管理方式描述分页分段段页式离散存储管理允许将一个进程的地址空间分散地存放到内存的多个不一定连续的物理区域中这克服了连续分配的主要缺点外部碎片分页式存储管理基本思想将进程的逻辑地址空间划分为大小相等的页将物理内存划分为与页大小相等的帧或页框以页为单位进行内存分配可以将逻辑上连续的页存放到物理上不连续的帧中内存分配与回收分配系统维护一个空闲帧列表当需要为进程加载页时从空闲帧列表中查找个空闲帧将页加载到这些帧中同时为该进程建立一个页表记录逻辑页号到物理帧号的映射关系页表的基地址和长度或只记录基地址长度隐含在进程控制块中存放在进程控制块中回收进程结束时将其占用的所有物理帧归还到空闲帧列表中并撤销其页表地址变换逻辑地址结构页号页内偏移量变换过程硬件根据逻辑地址自动分离出页号和页内偏移量系统根据中的页表基地址寄存器和页号访问内存中的页表从页表中找到页号对应的页表项从中获取该页对应的物理帧号检查中的保护位和有效位见内存保护计算物理地址物理地址帧号页面大小页内偏移量加速为了减少访问内存页表的开销通常使用高速缓存或快表存储最近访问过的页表项内存保护边界保护页内偏移量永远不会超过页面大小天然防止了越界访问其他页硬件在计算物理地址时会检查页号是否超出页表长度隐式或显式访问权限页表项中通常包含保护位如读写执行权限位控制对该页的操作类型有效无效位标记该页是否已调入内存且有效访问无效页会触发缺页中断用户内核位区分内核空间和用户空间页分段式存储管理基本思想按照程序的逻辑结构如代码段数据段堆栈段等划分进程的逻辑地址空间每个部分称为一个段段的长度可变以段为单位进行内存分配每个段在物理内存中占据一块连续的区域但段与段之间可以不连续内存分配与回收分配系统维护一个空闲内存块列表当需要为一个段分配内存时使用动态分区分配算法如首次适应最佳适应最坏适应查找一个足够大的连续空闲块分配后记录段的起始物理地址基地址和长度限长到该进程的段表中段表的基地址和长度存放在中此方式会产生外部碎片回收进程结束或主动释放段时将其占用的物理内存块归还到空闲列表中并尝试与相邻的空闲块合并地址变换逻辑地址结构段号段内偏移量变换过程硬件根据逻辑地址分离出段号和段内偏移量系统根据中的段表基地址寄存器和段号访问内存中的段表从段表中找到段号对应的段表项从中获取该段的基地址和长度检查比较段内偏移量是否小于段长度如果则发生地址越界错误检查中的保护位见内存保护计算物理地址物理地址基地址段内偏移量内存保护边界保护通过段表项中的长度进行检查防止段内偏移量越界访问其他段或非法内存访问权限段表项中包含保护位如读写执行权限位控制对整个段的操作类型符合段的逻辑意义特权级位可以实现更细粒度的保护存在位类似分页的有效位标记段是否在内存中段页式存储管理基本思想结合了分页和分段的优点先将进程逻辑地址空间按逻辑结构划分为段再将每个段划分为大小相等的页物理内存划分为帧内存分配以页为基本单位一个段的页可以分散存储在不同的物理帧中内存分配与回收分配为进程创建段表当一个段需要加载时系统为该段创建页表然后为该段的每一页从空闲帧列表中分配一个物理帧并将页加载进去更新段的页表记录页号到帧号的映射段表项中不再直接存储段的物理基地址而是存储该段对应的页表的基地址和页表长度回收进程结束或段被换出时回收其所有页占用的物理帧归还到空闲帧列表并撤销对应的页表和段表项地址变换逻辑地址结构段号段内页号页内偏移量变换过程硬件根据逻辑地址分离出段号段内页号和页内偏移量根据中的段表基地址寄存器和段号访问段表找到段号对应的段表项获取该段的页表基地址和页表长度或段长用于间接检查页号检查段保护检查段表项中的保护位检查页号越界比较段内页号是否小于页表长度如果则地址越界注意这里的检查可能与段长检查结合根据和页号访问该段对应的页表找到页号对应的页表项获取物理帧号检查页保护检查中的保护位和有效位计算物理地址物理地址帧号页面大小页内偏移量加速同样可以使用存储段号页号到帧号保护位的映射内存保护提供双重保护机制段级保护段表项中的保护位特权级和段长限制通过页表长度体现页级保护页表项中的保护位有效无效这种分层保护更为灵活和强大不同存储管理方式的比较及演变过程演变过程与原因早期简单系统固定分区可变分区连续存储管理需求最早的计算机或简单的批处理系统只需要将一个或少数几个程序装入内存执行方式将内存划分为固定大小或根据作业需求动态划分的连续区域问题固定分区产生内部碎片分配给进程的分区大于其实际需求的部分无法利用分区大小固定限制了程序的大小可变分区产生外部碎片内存中存在许多离散的小空闲块总和可能很大但无法满足需要较大连续空间的新进程需要进行内存紧缩开销大驱动力外部碎片严重降低内存利用率内存紧缩效率低下需要找到一种能利用不连续空闲空间的方法连续存储分页式存储管理离散存储动机解决外部碎片问题利用所有可用的物理内存即使它们不连续方式将逻辑和物理空间都划分为固定大小的页帧按页分配任何空闲帧都可以分配给任何页优点几乎完全消除了外部碎片内存分配变得简单只需管理空闲帧列表方便实现虚拟内存按需调页缺点产生内部碎片最后一个页往往装不满平均每个进程浪费半个页不符合程序的逻辑结构程序的代码数据堆栈作为一个整体被切割成页不便于按逻辑单位进行共享和保护例如很难只共享一个函数它可能跨越页边界页表可能很大需要额外的内存存储页表多级页表增加了访问开销连续存储分页分段式存储管理离散存储动机更好地反映程序的逻辑结构方便实现共享和保护用户或编译器可以定义具有逻辑意义的段方式按逻辑单位段划分地址空间段长可变按段分配连续的物理内存优点逻辑性强便于编译管理共享可以共享整个代码段和保护可以对不同段设置不同权限段长可变可以精确匹配程序逻辑单元大小没有内部碎片缺点外部碎片问题再次出现因为段需要连续的物理内存块内存分配算法复杂动态分区分配可能需要内存紧缩分页分段段页式存储管理离散存储动机结合分页和分段的优点既能反映逻辑结构又能有效利用内存消除外部碎片方式先分段再对每个段分页优点具有分段的逻辑性易共享易保护的优点具有分页的内存利用率高无外部碎片内存分配简单的优点缺点系统开销增大需要同时维护段表和页表增加了内存占用地址变换过程更复杂需要两次查表段表页表物理地址硬件成本更高地址转换时间更长尽管可以缓解比较总结表特性连续分配可变分区分页式分段式段页式分配单位整个进程大小可变页固定大小段可变大小逻辑单位页固定大小内存要求连续离散页可以不连续离散段与段间可不连续离散段内页可不连续地址空间一维一维逻辑上二维页偏二维段偏三维段页偏碎片类型外部碎片内部碎片页内外部碎片内部碎片页内逻辑性差差好按逻辑结构划分好按逻辑结构划分共享困难困难页粒度容易段粒度容易段粒度保护简单基址限长页级保护段级保护限长段级页级保护地址变换简单加基址中等查页表中等查段表检查限长复杂查段表页表管理开销低中页表空间中段表空间分配算法高段表页表空间复杂硬件重点逻辑地址到物理地址的地址变换实验计算假设以下场景和参数页面大小逻辑地址用十六进制表示物理内存大小足够分页式地址变换示例假设某进程的页表部分内容如下页号帧号问题计算逻辑地址十进制的物理地址步骤确定地址结构页面大小所以页内偏移量占位逻辑地址共多少位取决于系统假设是位则页号占位逻辑地址页号页内偏移量分解逻辑地址逻辑地址二进制页内偏移量取低位十进制页号取高位十进制查页表页号查上表页号对应的帧号计算物理地址物理地址帧号页面大小页内偏移量物理地址物理地址十进制转换为十六进制物理地址分段式地址变换示例假设某进程的段表如下段号基地址长度代码数据堆栈问题计算逻辑地址段号段内偏移量的物理地址步骤确定地址结构段号段内偏移量分解逻辑地址段号段内偏移量查段表段号查上表段号对应的基地址长度检查越界比较和因为所以访问合法计算物理地址物理地址基地址段内偏移量物理地址物理地址另一个问题计算逻辑地址段号段内偏移量的物理地址步骤分解查表检查因为地址越界结果发生地址越界中断不会计算物理地址段页式地址变换示例沿用上面的页面大小和段表示例假设段数据段被分成了页其页表如下存储在段表项指向的物理地址处段表段号页表基地址页表长度表示有页段的页表位于物理地址段内页号帧号问题计算逻辑地址段号段内地址的物理地址步骤确定地址结构段号段内页号页内偏移量页面大小页内偏移量占位段内地址需要分解为页号和偏移量分解逻辑地址段号段内地址页内偏移量取低位十进制段内页号段内地址除去偏移量的高位向右移位得到十进制所以逻辑地址分解为查段表段号查段表找到检查页号越界段内页号页表长度表示页号范围是因为所以页号合法查页表找到段的页表基地址为访问页表中的第项物理地址这里简化直接看表查表得到页号对应的帧号计算物理地址物理地址帧号页面大小页内偏移量物理地址物理地址十进制转换为十六进制物理地址难点分页管理性能分析分页管理的主要性能指标是有效内存访问时间受到多种因素的影响内存访问时间访问物理内存一次所需的时间访问时间访问一次所需的时间命中率要查找的页表项在中找到的概率页表级数如果使用多级页表访问一次页表可能需要多次内存访问对于级页表在未命中的情况下需要次内存访问次访问各级页表次访问目标数据对于单级页表需要次内存访问次页表次数据缺页率访问的页面不在内存中的概率缺页处理时间处理缺页中断所需的时间包括中断处理开销将旧页面换出到磁盘如果需要将所需页面从磁盘读入内存更新页表和恢复进程执行通常远大于毫秒纳秒级别计算公式考虑不考虑缺页命中时间访问时间内存访问时间未命中单级页表时间访问时间页表访问时间内存访问时间未命中级页表时间访问时间次页表访问时间内存访问时间单级页表通常相对很小可近似为级页表通常相对很小可近似为考虑和缺页现在引入缺页率无缺页概率访问时间为上面计算的考虑令其为发生缺页概率时间缺页处理时间通常包含了重新执行指令导致的那次内存访问时间或者说相对于访问时间可以忽略总例如结合单级页表和缺页简化分析假设很小很大单级页表级页表性能分析关键点命中率至关重要由于比大得多每提高一点都能显著降低局部性原理使得高如成为可能缺页率的影响巨大由于比大几个数量级毫秒纳秒即使很小的如也会导致急剧增加如果过高系统会花费大量时间在页面换入换出上称为颠簸页面大小的影响增大页面优点减少页表项数量降低页表大小和内存开销提高命中率覆盖更大范围的地址降低缺页率更好的空间局部性一次调入更多相关数据缺点增加内部碎片首次加载或换入换出单个页面的时间变长可能降低程序的时间局部性不相关的数据也被加载减小页面优点减少内部碎片更好地适应程序局部性缺点增大页表大小降低命中率可能增加缺页次数但每次处理时间短需要权衡选择合适的页面大小多级页表以时间换空间减少了页表在内存中的连续存储需求但增加了未命中时的访问时间结论高效的分页管理依赖于高命中率和极低的缺页率操作系统需要通过有效的页面置换算法来维持低的缺页率硬件的设计对性能至关重要好的我们来对比一下分页式存储管理和分段式存储管理的主要好处优点与坏处缺点分页式存储管理好处优点高内存利用率几乎无外部碎片由于按固定大小的页帧进行分配任何空闲的物理帧都可以分配给任何逻辑页这极大地减少甚至消除了外部碎片提高了物理内存的利用率内存分配简单管理空闲内存只需维护一个空闲帧列表即可分配和回收操作相对简单高效支持虚拟内存分页是实现请求调页式虚拟内存的基础可以只加载程序的一部分页面到内存其他页放在磁盘上按需调入从而支持运行比物理内存更大的程序物理地址空间不必连续进程的页可以分散存储在物理内存的任何可用帧中提供了很大的灵活性坏处缺点内部碎片进程的最后一部分逻辑地址空间的末尾通常无法占满一个完整的页导致该页的剩余部分被浪费形成内部碎片平均每个进程会浪费半个页面的空间页表开销需要额外的内存空间来存储页表对于地址空间非常大的进程或多级页表页表本身可能占用相当大的内存地址转换开销每次访问内存理论上都需要访问一次页表存在内存中才能得到物理地址增加了内存访问时间虽然快表可以大大缓解这个问题但未命中时仍有性能损失不利于逻辑共享和保护页是物理划分单位与程序的逻辑结构如函数数据块无关很难按逻辑意义如共享一个特定的函数或数据结构进行共享或设置保护权限因为它们可能跨越页面边界或只占页面的一部分分段式存储管理好处优点符合程序的逻辑结构分段是按照程序的逻辑意义如代码段数据段堆栈段等划分的方便用户和编译器组织管理和理解程序便于共享可以方便地以逻辑段为单位实现共享例如多个进程可以共享同一个代码段只需让它们的段表指向同一个物理代码段便于保护可以方便地以逻辑段为单位设置不同的访问权限如代码段只读数据段可读写更符合逻辑需求段表中的限长寄存器也提供了天然的边界保护动态链接与增长段的长度可变可以更好地适应程序在运行时动态增长的数据结构如堆栈堆无内部碎片段的大小是根据逻辑需求确定的分配的物理内存大小等于段的大小不会产生内部碎片坏处缺点外部碎片由于段的长度可变当段被换入换出或释放后内存中会产生许多不连续的小空闲块外部碎片即使总空闲空间足够也可能找不到一块足够大的连续空间来装入新的段内存分配复杂需要使用动态分区分配算法如首次适应最佳适应等来查找合适的空闲块分配和回收的管理开销比分页大可能需要内存紧缩为了解决外部碎片问题有时需要移动内存中的段将小的空闲块合并成大块这个过程内存紧缩非常耗时地址转换相对复杂需要查段表检查段内偏移量是否越界进行基址加法运算总结对比特性分页式分段式优点内存利用率高无外部碎片符合逻辑结构便于共享与保护内存分配简单无内部碎片支持虚拟内存基础可动态增长缺点内部碎片外部碎片页表开销大地址转换慢需内存分配复杂可能需内存紧缩不利于逻辑共享与保护分配单位页物理固定大小段逻辑可变大小地址空间一维逻辑上二维段号段内偏移选择考量如果首要目标是最大化内存利用率和简化内存分配管理分页是更好的选择如果首要目标是支持程序的逻辑结构方便实现共享和保护分段更具优势实践中现代操作系统如和处理器架构如往往采用段页式或以分页为主分段为辅的方式试图结合两者的优点例如架构虽然保留了分段机制但在现代位模式下分段的作用被大大简化主要依赖分页机制进行地址转换保护和虚拟内存管理好的我们来谈谈云计算环境下的存储管理方式与传统操作系统直接管理物理磁盘内存分页分段不同云计算环境下的存储管理更加抽象化服务化分布式和弹性化用户通常不直接与物理硬件打交道而是通过云服务提供商提供的存储服务接口或管理控制台来配置和使用存储资源云计算存储管理的核心目标是提供按需分配高可用高持久性可扩展安全且成本优化的存储能力主要可以分为以下几种典型的存储管理方式或服务类型对象存储基本思想将数据及其关联的元数据作为一个整体称为对象对象存储在一个扁平的地址空间通常称为桶或容器中通过唯一的对象通常是进行访问它不提供传统文件系统的层级目录结构管理方式分配用户创建存储桶然后通过如是事实标准上传对象存储容量通常是按需无限扩展的用户无需预先分配固定大小回收用户通过删除对象或存储桶访问与保护通过访问控制列表存储桶策略和身份与访问管理服务进行精细的权限控制支持数据加密服务器端加密客户端加密生命周期管理可以设置策略自动将不常访问的对象迁移到低成本的存储层如或在指定时间后自动删除对象版本控制可以为存储桶启用版本控制保留对象的历史版本防止意外删除或覆盖特点高度可扩展高持久性通常通过多副本冗余实现成本效益高尤其对于冷数据适合存储海量非结构化数据图片视频日志备份静态网站内容大数据湖等访问通常基于延迟相对块存储和文件存储较高典型服务阿里云块存储基本思想提供原始的未格式化的存储块设备类似于物理硬盘或存储区域网络这些块设备可以挂载到云服务器虚拟机实例上由实例内的操作系统进行格式化如和管理文件系统管理方式分配用户创建并指定大小和性能类型如基于的高型基于的吞吐量优化型的卷然后将其附加到一个虚拟机实例上回收用户将卷从实例分离然后删除该卷访问与保护通常只能被单个实例挂载某些特定类型支持多重挂载安全性依赖于实例的安全组防火墙规则以及卷本身的加密选项通常在创建时指定快照可以创建卷的时间点快照用于备份恢复或创建新的相同内容的卷动态调整许多云平台允许在线调整卷的大小或性能类型特点提供低延迟高吞吐量的存储适合需要直接块级访问的应用如数据库需要高性能文件系统的应用操作系统启动盘等典型服务阿里云块存储高效云盘等文件存储基本思想提供基于网络的文件共享服务类似于传统的网络附加存储它提供标准的文件系统接口如允许多个客户端云服务器本地服务器同时挂载同一个文件系统并共享数据管理方式分配用户创建文件系统并选择性能模式吞吐量模式等然后通过指定的挂载点在客户端上挂载容量通常可以弹性伸缩回收用户卸载文件系统然后删除访问与保护通过网络安全规则如安全组导出策略集成控制访问支持传输中加密和静态加密备份与恢复通常通过云提供商的备份服务或快照功能进行特点提供共享访问标准的文件系统语义易于集成现有应用适合内容管理系统服务开发测试环境共享代码库大数据分析如与集群共享数据容器持久化存储等场景典型服务阿里云云计算存储管理与传统存储管理的对比与演变抽象层级云存储管理远高于传统级管理用户关注的是服务容量性能成本和策略而不是物理磁盘布局柱面扇区或内存页帧资源池化与弹性云存储将底层大量物理存储资源池化通过软件定义存储技术进行管理实现按需分配和弹性伸缩用户无需关心底层硬件的增减管理焦点从管理物理设备和数据块页转变为管理存储服务调用访问策略生命周期规则和成本优化高可用与持久性云存储通过冗余自动故障切换多区域多可用区复制等机制在服务层面提供了远高于单个物理设备的高可用性和数据持久性保证例如设计提供的持久性安全性云存储提供了更丰富的安全工具和实践如细粒度权限控制自动加密密钥管理服务安全审计日志等但同时也引入了新的安全挑战如安全配置错误成本模型从资本支出购买硬件转向运营支出按使用量付费需要持续的成本监控和优化总结云计算存储管理是一种服务化的存储模式它将复杂的底层硬件管理细节隐藏起来通过等不同的服务类型满足多样化的应用需求其管理的核心在于利用云平台提供的控制台和自动化工具进行资源的按需配置权限控制生命周期管理数据保护和成本优化以实现存储的弹性可靠安全和高效这与传统操作系统关注进程地址空间映射内存分配回收的机制有着本质的不同',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-04-23 14:35:10',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.emptydust.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">Fengling's Blog</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/homework/" style="font-size: 1.05rem;">homework<sup>2</sup></a><a href="/tags/icpc/" style="font-size: 1.05rem;">icpc<sup>3</sup></a><a href="/tags/weekly-report/" style="font-size: 1.05rem;">weekly report<sup>12</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">机器学习<sup>2</sup></a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.05rem;">随笔<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div><div class="console-btn-item" id="consoleKeyboard" onclick="anzhiyu.keyboardToggle()" title="快捷键开关"><a class="keyboard-switch"><i class="anzhiyufont anzhiyu-icon-keyboard"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B6%AF/" itemprop="url">大学生涯</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/icpc/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>icpc</span></a></span></div></div><h1 class="post-title" itemprop="name headline">OS_turital</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-12-28T13:33:12.000Z" title="发表于 2024-12-28 21:33:12">2024-12-28</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-04-23T06:35:10.429Z" title="更新于 2025-04-23 14:35:10">2025-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">8.3k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>26分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="OS_turital"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为上海"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>上海</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://bu.dusays.com/2025/04/17/6801139c15a01.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://emptydust.github.io/2024/12/28/os_1/"><header><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B6%AF/" itemprop="url">大学生涯</a><a href="/tags/icpc/" tabindex="-1" itemprop="url">icpc</a><h1 id="CrawlerTitle" itemprop="name headline">OS_turital</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">风铃夜行</span><time itemprop="dateCreated datePublished" datetime="2024-12-28T13:33:12.000Z" title="发表于 2024-12-28 21:33:12">2024-12-28</time><time itemprop="dateCreated datePublished" datetime="2025-04-23T06:35:10.429Z" title="更新于 2025-04-23 14:35:10">2025-04-23</time></header><h3 id="1-离散存储管理方式描述-分页、分段、段页式"><a href="#1-离散存储管理方式描述-分页、分段、段页式" class="headerlink" title="1. 离散存储管理方式描述 (分页、分段、段页式)"></a>1. 离散存储管理方式描述 (分页、分段、段页式)</h3><p>离散存储管理允许将一个进程的地址空间分散地存放到内存的多个<strong>不一定连续</strong>的物理区域中。这克服了连续分配的主要缺点——外部碎片。</p>
+<h4 id="a-分页式存储管理-Paging"><a href="#a-分页式存储管理-Paging" class="headerlink" title="a) 分页式存储管理 (Paging)"></a>a) 分页式存储管理 (Paging)</h4><ul>
+<li><strong>基本思想</strong>:<ul>
+<li>将进程的<strong>逻辑地址空间</strong>划分为大小相等的<strong>页 (Page)</strong>。</li>
+<li>将<strong>物理内存</strong>划分为与页大小相等的<strong>帧 (Frame) 或页框 (Page Frame)</strong>。</li>
+<li>以<strong>页</strong>为单位进行内存分配，可以将逻辑上连续的页存放到物理上不连续的帧中。</li>
+</ul>
+</li>
+<li><strong>内存分配与回收</strong>:<ul>
+<li><strong>分配</strong>: 系统维护一个空闲帧列表。当需要为进程加载 <code>n</code> 页时，从空闲帧列表中查找 <code>n</code> 个空闲帧，将页加载到这些帧中。同时，为该进程建立一个<strong>页表 (Page Table)</strong>，记录逻辑页号到物理帧号的映射关系。页表的基地址和长度（或只记录基地址，长度隐含在进程控制块中）存放在进程控制块 (PCB) 中。</li>
+<li><strong>回收</strong>: 进程结束时，将其占用的所有物理帧归还到空闲帧列表中，并撤销其页表。</li>
+</ul>
+</li>
+<li><strong>地址变换</strong>:<ul>
+<li><strong>逻辑地址结构</strong>: <code>(页号 P, 页内偏移量 W)</code></li>
+<li><strong>变换过程</strong>:<ol>
+<li>硬件 (MMU) 根据逻辑地址自动分离出页号 <code>P</code> 和页内偏移量 <code>W</code>。</li>
+<li>系统根据 PCB 中的页表基地址寄存器 (PTBR) 和页号 <code>P</code>，访问<strong>内存中的页表</strong>。</li>
+<li>从页表中找到页号 <code>P</code> 对应的<strong>页表项 (Page Table Entry, PTE)</strong>。</li>
+<li>从 PTE 中获取该页对应的物理<strong>帧号 <code>F</code></strong>。</li>
+<li>检查 PTE 中的保护位和有效位（见内存保护）。</li>
+<li>计算物理地址: <strong>物理地址 = 帧号 <code>F</code> * 页面大小 + 页内偏移量 <code>W</code></strong>。</li>
+</ol>
+</li>
+<li><strong>加速</strong>: 为了减少访问内存页表的开销，通常使用高速缓存 <strong>TLB (Translation Lookaside Buffer)</strong> 或 <strong>快表</strong>，存储最近访问过的页表项。</li>
+</ul>
+</li>
+<li><strong>内存保护</strong>:<ul>
+<li><strong>边界保护</strong>: 页内偏移量 <code>W</code> 永远不会超过页面大小，天然防止了越界访问其他页。硬件在计算物理地址时会检查页号 <code>P</code> 是否超出页表长度（隐式或显式）。</li>
+<li><strong>访问权限</strong>: 页表项 (PTE) 中通常包含保护位，如：<ul>
+<li><strong>读/写/执行 (R/W/X)</strong> 权限位：控制对该页的操作类型。</li>
+<li><strong>有效/无效位 (Valid/Invalid Bit)</strong>：标记该页是否已调入内存且有效。访问无效页会触发<strong>缺页中断 (Page Fault)</strong>。</li>
+<li><strong>用户/内核位 (User/Supervisor Bit)</strong>：区分内核空间和用户空间页。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="b-分段式存储管理-Segmentation"><a href="#b-分段式存储管理-Segmentation" class="headerlink" title="b) 分段式存储管理 (Segmentation)"></a>b) 分段式存储管理 (Segmentation)</h4><ul>
+<li><strong>基本思想</strong>:<ul>
+<li>按照程序的<strong>逻辑结构</strong> (如代码段、数据段、堆栈段等) 划分进程的逻辑地址空间，每个部分称为一个<strong>段 (Segment)</strong>。</li>
+<li>段的长度<strong>可变</strong>。</li>
+<li>以<strong>段</strong>为单位进行内存分配，每个段在物理内存中占据一块<strong>连续</strong>的区域，但段与段之间可以不连续。</li>
+</ul>
+</li>
+<li><strong>内存分配与回收</strong>:<ul>
+<li><strong>分配</strong>: 系统维护一个空闲内存块列表。当需要为一个段分配内存时，使用动态分区分配算法 (如首次适应、最佳适应、最坏适应) 查找一个足够大的连续空闲块。分配后，记录段的起始物理地址 (基地址) 和长度 (限长) 到该进程的<strong>段表 (Segment Table)</strong> 中。段表的基地址和长度存放在 PCB 中。此方式会产生<strong>外部碎片</strong>。</li>
+<li><strong>回收</strong>: 进程结束或主动释放段时，将其占用的物理内存块归还到空闲列表中，并尝试与相邻的空闲块合并。</li>
+</ul>
+</li>
+<li><strong>地址变换</strong>:<ul>
+<li><strong>逻辑地址结构</strong>: <code>(段号 S, 段内偏移量 W)</code></li>
+<li><strong>变换过程</strong>:<ol>
+<li>硬件 (MMU) 根据逻辑地址分离出段号 <code>S</code> 和段内偏移量 <code>W</code>。</li>
+<li>系统根据 PCB 中的段表基地址寄存器 (STBR) 和段号 <code>S</code>，访问<strong>内存中的段表</strong>。</li>
+<li>从段表中找到段号 <code>S</code> 对应的<strong>段表项 (Segment Table Entry, STE)</strong>。</li>
+<li>从 STE 中获取该段的<strong>基地址 <code>Base</code></strong> 和<strong>长度 <code>Limit</code></strong>。</li>
+<li><strong>检查</strong>: 比较段内偏移量 <code>W</code> 是否小于段长度 <code>Limit</code> (<code>0 &lt;= W &lt; Limit</code>)。如果 <code>W &gt;= Limit</code>，则发生<strong>地址越界</strong>错误 (Trap)。</li>
+<li>检查 STE 中的保护位（见内存保护）。</li>
+<li>计算物理地址: <strong>物理地址 = 基地址 <code>Base</code> + 段内偏移量 <code>W</code></strong>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>内存保护</strong>:<ul>
+<li><strong>边界保护</strong>: 通过段表项中的<strong>长度 <code>Limit</code></strong> 进行检查，防止段内偏移量越界访问其他段或非法内存。</li>
+<li><strong>访问权限</strong>: 段表项 (STE) 中包含保护位，如：<ul>
+<li><strong>读/写/执行 (R/W/X)</strong> 权限位：控制对整个段的操作类型，符合段的逻辑意义。</li>
+<li><strong>特权级位</strong>: 可以实现更细粒度的保护。</li>
+<li><strong>存在位 (Presence Bit)</strong>：类似分页的有效位，标记段是否在内存中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="c-段页式存储管理-Segmented-Paging"><a href="#c-段页式存储管理-Segmented-Paging" class="headerlink" title="c) 段页式存储管理 (Segmented Paging)"></a>c) 段页式存储管理 (Segmented Paging)</h4><ul>
+<li><strong>基本思想</strong>:<ul>
+<li>结合了分页和分段的优点。先将进程逻辑地址空间按逻辑结构划分为<strong>段</strong>，再将每个段划分为大小相等的<strong>页</strong>。</li>
+<li>物理内存划分为<strong>帧</strong>。</li>
+<li>内存分配以<strong>页</strong>为基本单位，一个段的页可以分散存储在不同的物理帧中。</li>
+</ul>
+</li>
+<li><strong>内存分配与回收</strong>:<ul>
+<li><strong>分配</strong>:<ol>
+<li>为进程创建段表。</li>
+<li>当一个段需要加载时，系统为该段创建<strong>页表</strong>。</li>
+<li>然后，为该段的每一页，从空闲帧列表中分配一个物理帧，并将页加载进去。更新段的页表，记录页号到帧号的映射。</li>
+<li>段表项中不再直接存储段的物理基地址，而是存储该段对应的<strong>页表的基地址</strong>和<strong>页表长度</strong>。</li>
+</ol>
+</li>
+<li><strong>回收</strong>: 进程结束或段被换出时，回收其所有页占用的物理帧，归还到空闲帧列表，并撤销对应的页表和段表项。</li>
+</ul>
+</li>
+<li><strong>地址变换</strong>:<ul>
+<li><strong>逻辑地址结构</strong>: <code>(段号 S, 段内页号 P, 页内偏移量 W)</code></li>
+<li><strong>变换过程</strong>:<ol>
+<li>硬件 (MMU) 根据逻辑地址分离出段号 <code>S</code>、段内页号 <code>P</code> 和页内偏移量 <code>W</code>。</li>
+<li>根据 PCB 中的段表基地址寄存器 (STBR) 和段号 <code>S</code>，访问<strong>段表</strong>。</li>
+<li>找到段号 <code>S</code> 对应的段表项 (STE)，获取该段的<strong>页表基地址 <code>PTBase</code></strong> 和<strong>页表长度 <code>PTLimit</code></strong> (或段长，用于间接检查页号)。</li>
+<li><strong>检查1 (段保护)</strong>: 检查段表项中的保护位。</li>
+<li><strong>检查2 (页号越界)</strong>: 比较段内页号 <code>P</code> 是否小于页表长度 <code>PTLimit</code>。如果 <code>P &gt;= PTLimit</code>，则地址越界 (Trap)。 (注意：这里的检查可能与段长检查结合)。</li>
+<li>根据 <code>PTBase</code> 和页号 <code>P</code>，访问该段对应的<strong>页表</strong>。</li>
+<li>找到页号 <code>P</code> 对应的页表项 (PTE)，获取物理<strong>帧号 <code>F</code></strong>。</li>
+<li><strong>检查3 (页保护)</strong>: 检查 PTE 中的保护位和有效位。</li>
+<li>计算物理地址: <strong>物理地址 = 帧号 <code>F</code> * 页面大小 + 页内偏移量 <code>W</code></strong>。</li>
+</ol>
+</li>
+<li><strong>加速</strong>: 同样可以使用 TLB，存储 <code>(段号, 页号)</code> 到 <code>(帧号, 保护位)</code> 的映射。</li>
+</ul>
+</li>
+<li><strong>内存保护</strong>:<ul>
+<li>提供<strong>双重保护</strong>机制：<ul>
+<li><strong>段级保护</strong>: 段表项中的保护位 (R/W/X, 特权级) 和段长限制 (通过页表长度体现)。</li>
+<li><strong>页级保护</strong>: 页表项中的保护位 (R/W/X, 有效/无效)。</li>
+</ul>
+</li>
+<li>这种分层保护更为灵活和强大。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-不同存储管理方式的比较及演变过程"><a href="#2-不同存储管理方式的比较及演变过程" class="headerlink" title="2. 不同存储管理方式的比较及演变过程"></a>2. 不同存储管理方式的比较及演变过程</h3><h4 id="演变过程与原因："><a href="#演变过程与原因：" class="headerlink" title="演变过程与原因："></a>演变过程与原因：</h4><ol>
+<li><p><strong>早期/简单系统 -&gt; 固定分区/可变分区 (连续存储管理)</strong>:</p>
+<ul>
+<li><strong>需求</strong>: 最早的计算机或简单的批处理系统，只需要将一个（或少数几个）程序装入内存执行。</li>
+<li><strong>方式</strong>: 将内存划分为固定大小或根据作业需求动态划分的连续区域。</li>
+<li><strong>问题</strong>:<ul>
+<li><strong>固定分区</strong>: 产生<strong>内部碎片</strong> (分配给进程的分区大于其实际需求的部分无法利用)。分区大小固定，限制了程序的大小。</li>
+<li><strong>可变分区</strong>: 产生<strong>外部碎片</strong> (内存中存在许多离散的小空闲块，总和可能很大，但无法满足需要较大连续空间的新进程)。需要进行<strong>内存紧缩 (Compaction)</strong>，开销大。</li>
+</ul>
+</li>
+<li><strong>驱动力</strong>: 外部碎片严重降低内存利用率，内存紧缩效率低下。需要找到一种能利用不连续空闲空间的方法。</li>
+</ul>
+</li>
+<li><p><strong>连续存储 -&gt; 分页式存储管理 (离散存储)</strong>:</p>
+<ul>
+<li><strong>动机</strong>: 解决<strong>外部碎片</strong>问题。利用所有可用的物理内存，即使它们不连续。</li>
+<li><strong>方式</strong>: 将逻辑和物理空间都划分为固定大小的页/帧，按页分配。任何空闲帧都可以分配给任何页。</li>
+<li><strong>优点</strong>:<ul>
+<li>几乎完全消除了外部碎片。</li>
+<li>内存分配变得简单（只需管理空闲帧列表）。</li>
+<li>方便实现虚拟内存（按需调页）。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:<ul>
+<li>产生<strong>内部碎片</strong> (最后一个页往往装不满，平均每个进程浪费半个页)。</li>
+<li><strong>不符合程序的逻辑结构</strong>: 程序的代码、数据、堆栈作为一个整体被切割成页，不便于按逻辑单位进行共享和保护。例如，很难只共享一个函数（它可能跨越页边界）。</li>
+<li><strong>页表可能很大</strong>: 需要额外的内存存储页表，多级页表增加了访问开销。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>连续存储/分页 -&gt; 分段式存储管理 (离散存储)</strong>:</p>
+<ul>
+<li><strong>动机</strong>: 更好地<strong>反映程序的逻辑结构</strong>，方便实现<strong>共享和保护</strong>。用户或编译器可以定义具有逻辑意义的段。</li>
+<li><strong>方式</strong>: 按逻辑单位（段）划分地址空间，段长可变，按段分配连续的物理内存。</li>
+<li><strong>优点</strong>:<ul>
+<li><strong>逻辑性强</strong>: 便于编译、管理、共享 (可以共享整个代码段) 和保护 (可以对不同段设置不同权限)。</li>
+<li><strong>段长可变</strong>: 可以精确匹配程序逻辑单元大小，没有内部碎片。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:<ul>
+<li><strong>外部碎片</strong>问题再次出现，因为段需要连续的物理内存块。</li>
+<li>内存分配算法复杂 (动态分区分配)。</li>
+<li>可能需要内存紧缩。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>分页 + 分段 -&gt; 段页式存储管理 (离散存储)</strong>:</p>
+<ul>
+<li><strong>动机</strong>: 结合分页和分段的优点，<strong>既能反映逻辑结构，又能有效利用内存、消除外部碎片</strong>。</li>
+<li><strong>方式</strong>: 先分段，再对每个段分页。</li>
+<li><strong>优点</strong>:<ul>
+<li>具有分段的逻辑性、易共享、易保护的优点。</li>
+<li>具有分页的内存利用率高（无外部碎片）、内存分配简单的优点。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>:<ul>
+<li><strong>系统开销增大</strong>: 需要同时维护段表和页表，增加了内存占用。</li>
+<li><strong>地址变换过程更复杂</strong>: 需要两次查表（段表 -&gt; 页表 -&gt; 物理地址），硬件成本更高，地址转换时间更长（尽管 TLB 可以缓解）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="比较总结表："><a href="#比较总结表：" class="headerlink" title="比较总结表："></a>比较总结表：</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">连续分配 (可变分区)</th>
+<th align="left">分页式 (Paging)</th>
+<th align="left">分段式 (Segmentation)</th>
+<th align="left">段页式 (Segmented Paging)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>分配单位</strong></td>
+<td align="left">整个进程 (大小可变)</td>
+<td align="left">页 (固定大小)</td>
+<td align="left">段 (可变大小, 逻辑单位)</td>
+<td align="left">页 (固定大小)</td>
+</tr>
+<tr>
+<td align="left"><strong>内存要求</strong></td>
+<td align="left">连续</td>
+<td align="left">离散 (页可以不连续)</td>
+<td align="left">离散 (段与段间可不连续)</td>
+<td align="left">离散 (段内页可不连续)</td>
+</tr>
+<tr>
+<td align="left"><strong>地址空间</strong></td>
+<td align="left">一维</td>
+<td align="left">一维 (逻辑上) / 二维 (页, 偏)</td>
+<td align="left">二维 (段, 偏)</td>
+<td align="left">三维 (段, 页, 偏)</td>
+</tr>
+<tr>
+<td align="left"><strong>碎片类型</strong></td>
+<td align="left">外部碎片</td>
+<td align="left">内部碎片 (页内)</td>
+<td align="left">外部碎片</td>
+<td align="left">内部碎片 (页内)</td>
+</tr>
+<tr>
+<td align="left"><strong>逻辑性</strong></td>
+<td align="left">差</td>
+<td align="left">差</td>
+<td align="left">好 (按逻辑结构划分)</td>
+<td align="left">好 (按逻辑结构划分)</td>
+</tr>
+<tr>
+<td align="left"><strong>共享</strong></td>
+<td align="left">困难</td>
+<td align="left">困难 (页粒度)</td>
+<td align="left">容易 (段粒度)</td>
+<td align="left">容易 (段粒度)</td>
+</tr>
+<tr>
+<td align="left"><strong>保护</strong></td>
+<td align="left">简单 (基址/限长)</td>
+<td align="left">页级保护 (PTE)</td>
+<td align="left">段级保护 (STE, 限长)</td>
+<td align="left">段级 + 页级保护</td>
+</tr>
+<tr>
+<td align="left"><strong>地址变换</strong></td>
+<td align="left">简单 (加基址)</td>
+<td align="left">中等 (查页表)</td>
+<td align="left">中等 (查段表, 检查限长)</td>
+<td align="left">复杂 (查段表+页表)</td>
+</tr>
+<tr>
+<td align="left"><strong>管理开销</strong></td>
+<td align="left">低</td>
+<td align="left">中 (页表空间, TLB)</td>
+<td align="left">中 (段表空间, 分配算法)</td>
+<td align="left">高 (段表+页表空间, 复杂硬件)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="3-重点-逻辑地址到物理地址的地址变换-实验、计算"><a href="#3-重点-逻辑地址到物理地址的地址变换-实验、计算" class="headerlink" title="3. (重点) 逻辑地址到物理地址的地址变换 (实验、计算)"></a>3. (重点) 逻辑地址到物理地址的地址变换 (实验、计算)</h3><p>假设以下场景和参数：</p>
+<ul>
+<li>页面大小 (Page Size) = 1 KB = 1024 Bytes = 2^10 Bytes</li>
+<li>逻辑地址用十六进制表示。</li>
+<li>物理内存大小足够。</li>
+</ul>
+<h4 id="a-分页式地址变换示例"><a href="#a-分页式地址变换示例" class="headerlink" title="a) 分页式地址变换示例"></a>a) 分页式地址变换示例</h4><p>假设某进程的页表部分内容如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">页号 (P)</th>
+<th align="left">帧号 (F)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">12</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">7</td>
+</tr>
+</tbody></table>
+<p><strong>问题</strong>: 计算逻辑地址 <code>0x0A5C</code> (十进制 2652) 的物理地址。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><p><strong>确定地址结构</strong>:</p>
+<ul>
+<li>页面大小 = 1KB = 2^10 B，所以页内偏移量占 <strong>10位</strong>。</li>
+<li>逻辑地址共多少位取决于系统，假设是 16 位。则页号占 <code>16 - 10 = 6</code> 位。</li>
+<li>逻辑地址 <code>(页号 P, 页内偏移量 W)</code></li>
+</ul>
+</li>
+<li><p><strong>分解逻辑地址</strong>:</p>
+<ul>
+<li>逻辑地址 <code>0x0A5C</code> = <code>0000 1010 0101 1100</code> (二进制)</li>
+<li>页内偏移量 <code>W</code>: 取低 10 位 <code>10 0101 1100</code> = <code>0x25C</code> (十进制 508+84+4=604?)  -&gt; <code>10 0101 1100</code> = 512 + 64 + 16 + 8 + 4 = <strong>604</strong>。 <code>0x25C</code> = 2<em>256 + 5</em>16 + 12 = 512 + 80 + 12 = <strong>604</strong>。</li>
+<li>页号 <code>P</code>: 取高 6 位 <code>0000 10</code> = <code>2</code> (十进制)</li>
+</ul>
+</li>
+<li><p><strong>查页表</strong>:</p>
+<ul>
+<li>页号 <code>P = 2</code>。</li>
+<li>查上表，页号 2 对应的帧号 <code>F = 12</code>。</li>
+</ul>
+</li>
+<li><p><strong>计算物理地址</strong>:</p>
+<ul>
+<li>物理地址 = 帧号 <code>F</code> * 页面大小 + 页内偏移量 <code>W</code></li>
+<li>物理地址 = <code>12 * 1024 + 604</code></li>
+<li>物理地址 = <code>12288 + 604 = 12892</code> (十进制)</li>
+<li>转换为十六进制: <code>12892 / 16 = 805 ... 12 (C)</code><br><code>805 / 16 = 50 ... 5</code><br><code>50 / 16 = 3 ... 2</code><br><code>3 / 16 = 0 ... 3</code></li>
+<li>物理地址 = <code>0x325C</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="b-分段式地址变换示例"><a href="#b-分段式地址变换示例" class="headerlink" title="b) 分段式地址变换示例"></a>b) 分段式地址变换示例</h4><p>假设某进程的段表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">段号 (S)</th>
+<th align="left">基地址 (Base)</th>
+<th align="left">长度 (Limit)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0 (代码)</td>
+<td align="left">0x2000</td>
+<td align="left">0x0800</td>
+</tr>
+<tr>
+<td align="left">1 (数据)</td>
+<td align="left">0x4800</td>
+<td align="left">0x1000</td>
+</tr>
+<tr>
+<td align="left">2 (堆栈)</td>
+<td align="left">0x3000</td>
+<td align="left">0x0C00</td>
+</tr>
+</tbody></table>
+<p><strong>问题</strong>: 计算逻辑地址 <code>(段号=1, 段内偏移量=0x0F10)</code> 的物理地址。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><p><strong>确定地址结构</strong>: <code>(段号 S, 段内偏移量 W)</code></p>
+</li>
+<li><p><strong>分解逻辑地址</strong>:</p>
+<ul>
+<li>段号 <code>S = 1</code></li>
+<li>段内偏移量 <code>W = 0x0F10</code></li>
+</ul>
+</li>
+<li><p><strong>查段表</strong>:</p>
+<ul>
+<li>段号 <code>S = 1</code>。</li>
+<li>查上表，段号 1 对应的基地址 <code>Base = 0x4800</code>，长度 <code>Limit = 0x1000</code>。</li>
+</ul>
+</li>
+<li><p><strong>检查越界</strong>:</p>
+<ul>
+<li>比较 <code>W</code> 和 <code>Limit</code>。</li>
+<li><code>W = 0x0F10</code></li>
+<li><code>Limit = 0x1000</code></li>
+<li>因为 <code>0x0F10 &lt; 0x1000</code>，所以访问合法。</li>
+</ul>
+</li>
+<li><p><strong>计算物理地址</strong>:</p>
+<ul>
+<li>物理地址 = 基地址 <code>Base</code> + 段内偏移量 <code>W</code></li>
+<li>物理地址 = <code>0x4800 + 0x0F10</code></li>
+<li>物理地址 = <code>0x5710</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>另一个问题</strong>: 计算逻辑地址 <code>(段号=2, 段内偏移量=0x0C50)</code> 的物理地址。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><strong>分解</strong>: <code>S=2</code>, <code>W=0x0C50</code></li>
+<li><strong>查表</strong>: <code>S=2</code> -&gt; <code>Base=0x3000</code>, <code>Limit=0x0C00</code></li>
+<li><strong>检查</strong>: <code>W=0x0C50</code>, <code>Limit=0x0C00</code>。因为 <code>0x0C50 &gt;= 0x0C00</code>，地址越界！</li>
+<li><strong>结果</strong>: 发生地址越界中断 (Trap)，不会计算物理地址。</li>
+</ol>
+<h4 id="c-段页式地址变换示例"><a href="#c-段页式地址变换示例" class="headerlink" title="c) 段页式地址变换示例"></a>c) 段页式地址变换示例</h4><p>沿用上面的页面大小 (1KB = 1024B = 2^10 B) 和段表示例。假设段 1 (数据段) 被分成了页，其页表如下 (存储在段表项 STE[1] 指向的物理地址处)：</p>
+<p><strong>段表 (Segment Table):</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">段号 (S)</th>
+<th align="left">页表基地址 (PTBase)</th>
+<th align="left">页表长度 (PTLimit)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">…</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">0x8000</td>
+<td align="left">4 (表示有4页)</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">…</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p><strong>段 1 的页表 (位于物理地址 0x8000):</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">段内页号 (P)</th>
+<th align="left">帧号 (F)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">18</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">25</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">30</td>
+</tr>
+</tbody></table>
+<p><strong>问题</strong>: 计算逻辑地址 <code>(段号=1, 段内地址=0x0A5C)</code> 的物理地址。</p>
+<p><strong>步骤</strong>:</p>
+<ol>
+<li><p><strong>确定地址结构</strong>: <code>(段号 S, 段内页号 P, 页内偏移量 W)</code></p>
+<ul>
+<li>页面大小 1KB，页内偏移量 <code>W</code> 占 10 位。</li>
+<li>段内地址 <code>0x0A5C</code> 需要分解为页号和偏移量。</li>
+</ul>
+</li>
+<li><p><strong>分解逻辑地址</strong>:</p>
+<ul>
+<li>段号 <code>S = 1</code></li>
+<li>段内地址 <code>0x0A5C</code> = <code>0000 1010 0101 1100</code></li>
+<li>页内偏移量 <code>W</code>: 取低 10 位 <code>10 0101 1100</code> = <code>0x25C</code> (十进制 604)</li>
+<li>段内页号 <code>P</code>: 段内地址除去偏移量的高位。<code>0x0A5C</code> &gt;&gt; 10。<br><code>0x0A5C</code> = <code>0000 1010 0101 1100</code><br>向右移10位得到 <code>0000 10</code> = <code>2</code> (十进制)。<br>所以 <code>P = 2</code>。</li>
+<li>逻辑地址分解为 <code>(S=1, P=2, W=0x25C)</code>。</li>
+</ul>
+</li>
+<li><p><strong>查段表</strong>:</p>
+<ul>
+<li>段号 <code>S = 1</code>。</li>
+<li>查段表，找到 <code>PTBase = 0x8000</code>，<code>PTLimit = 4</code>。</li>
+</ul>
+</li>
+<li><p><strong>检查页号越界</strong>:</p>
+<ul>
+<li>段内页号 <code>P = 2</code>。</li>
+<li>页表长度 <code>PTLimit = 4</code> (表示页号范围是 0, 1, 2, 3)。</li>
+<li>因为 <code>P=2 &lt; PTLimit=4</code>，所以页号合法。</li>
+</ul>
+</li>
+<li><p><strong>查页表</strong>:</p>
+<ul>
+<li>找到段 1 的页表 (基地址为 <code>0x8000</code>)。</li>
+<li>访问页表中的第 <code>P=2</code> 项。 (物理地址 = <code>PTBase + P * sizeof(PTE)</code>，这里简化，直接看表)。</li>
+<li>查表得到，页号 2 对应的帧号 <code>F = 9</code>。</li>
+</ul>
+</li>
+<li><p><strong>计算物理地址</strong>:</p>
+<ul>
+<li>物理地址 = 帧号 <code>F</code> * 页面大小 + 页内偏移量 <code>W</code></li>
+<li>物理地址 = <code>9 * 1024 + 0x25C</code></li>
+<li>物理地址 = <code>9216 + 604 = 9820</code> (十进制)</li>
+<li>转换为十六进制: <code>9820 / 16 = 613 ... 12 (C)</code><br><code>613 / 16 = 38 ... 5</code><br><code>38 / 16 = 2 ... 6</code><br><code>2 / 16 = 0 ... 2</code></li>
+<li>物理地址 = <code>0x265C</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="4-难点-分页管理性能分析"><a href="#4-难点-分页管理性能分析" class="headerlink" title="4. (难点) 分页管理性能分析"></a>4. (难点) 分页管理性能分析</h3><p>分页管理的主要性能指标是<strong>有效内存访问时间 (Effective Access Time, EAT)</strong>。EAT 受到多种因素的影响：</p>
+<ol>
+<li><strong>内存访问时间 (Memory Access Time, <code>m</code>)</strong>: 访问物理内存一次所需的时间。</li>
+<li><strong>TLB 访问时间 (TLB Access Time, <code>t</code>)</strong>: 访问 TLB 一次所需的时间 (<code>t &lt;&lt; m</code>)。</li>
+<li><strong>TLB 命中率 (TLB Hit Rate, <code>α</code>)</strong>: 要查找的页表项在 TLB 中找到的概率 (<code>0 &lt;= α &lt;= 1</code>)。</li>
+<li><strong>页表级数 (Page Table Levels, <code>k</code>)</strong>: 如果使用多级页表，访问一次页表可能需要多次内存访问。对于 <code>k</code> 级页表，在 TLB 未命中的情况下，需要 <code>k+1</code> 次内存访问（k次访问各级页表 + 1次访问目标数据）。对于单级页表，<code>k=1</code>，需要 2 次内存访问（1次页表 + 1次数据）。</li>
+<li><strong>缺页率 (Page Fault Rate, <code>p</code>)</strong>: 访问的页面不在内存中的概率 (<code>0 &lt;= p &lt;= 1</code>)。</li>
+<li><strong>缺页处理时间 (Page Fault Service Time, <code>T_pf</code>)</strong>: 处理缺页中断所需的时间，包括：<ul>
+<li>中断处理开销。</li>
+<li>将旧页面换出到磁盘 (如果需要)。</li>
+<li>将所需页面从磁盘读入内存。</li>
+<li>更新页表和 TLB。</li>
+<li>恢复进程执行。<br><code>T_pf</code> 通常远大于 <code>m</code> (毫秒 vs 纳秒级别)。</li>
+</ul>
+</li>
+</ol>
+<h4 id="EAT-计算公式："><a href="#EAT-计算公式：" class="headerlink" title="EAT 计算公式："></a>EAT 计算公式：</h4><p><strong>a) 考虑 TLB (不考虑缺页)</strong></p>
+<ul>
+<li><strong>TLB 命中</strong>: 时间 = TLB 访问时间 + 内存访问时间 = <code>t + m</code></li>
+<li><strong>TLB 未命中 (单级页表)</strong>: 时间 = TLB 访问时间 + 页表访问时间 + 内存访问时间 = <code>t + m + m</code> = <code>t + 2m</code></li>
+<li><strong>TLB 未命中 (k 级页表)</strong>: 时间 = TLB 访问时间 + k 次页表访问时间 + 内存访问时间 = <code>t + k*m + m</code> = <code>t + (k+1)m</code></li>
+</ul>
+<p><strong>EAT (单级页表)</strong> = <code>α * (t + m) + (1 - α) * (t + 2m)</code><br>= <code>αt + αm + t + 2m - αt - 2αm</code><br>= <code>t + (2 - α)m</code><br>(通常 <code>t</code> 相对 <code>m</code> 很小，可近似为 <code>(2 - α)m</code>)</p>
+<p><strong>EAT (k 级页表)</strong> = <code>α * (t + m) + (1 - α) * (t + (k+1)m)</code><br>(通常 <code>t</code> 相对 <code>m</code> 很小，可近似为 <code>αm + (1 - α)(k+1)m</code> = <code>(α + (1-α)(k+1))m</code>)</p>
+<p><strong>b) 考虑 TLB 和缺页</strong></p>
+<p>现在引入缺页率 <code>p</code>。</p>
+<ul>
+<li><strong>无缺页 (概率 <code>1-p</code>)</strong>: 访问时间为上面计算的 EAT (考虑 TLB)。令其为 <code>EAT_no_fault</code>。</li>
+<li><strong>发生缺页 (概率 <code>p</code>)</strong>: 时间 = 缺页处理时间 <code>T_pf</code> (通常 <code>T_pf</code> 包含了重新执行指令导致的那次内存访问时间，或者说相对于 <code>T_pf</code>，访问时间可以忽略)。</li>
+</ul>
+<p><strong>总 EAT</strong> = <code>(1 - p) * EAT_no_fault + p * T_pf</code></p>
+<p><strong>例如，结合单级页表和缺页：</strong><br><strong>EAT</strong> = <code>(1 - p) * [α * (t + m) + (1 - α) * (t + 2m)] + p * T_pf</code></p>
+<p><strong>简化分析 (假设 <code>t</code> 很小，<code>T_pf</code> 很大):</strong><br><strong>EAT ≈ (1 - p) * (2 - α)m + p * T_pf<code> (单级页表)** **EAT ≈ (1 - p) * (α + (1-α)(k+1))m + p * T_pf</code> (k 级页表)</strong></p>
+<h4 id="性能分析关键点："><a href="#性能分析关键点：" class="headerlink" title="性能分析关键点："></a>性能分析关键点：</h4><ol>
+<li><strong>TLB 命中率 <code>α</code>至关重要</strong>: 由于 <code>m</code> 比 <code>t</code> 大得多，<code>α</code> 每提高一点，都能显著降低 <code>EAT_no_fault</code>。局部性原理使得高 <code>α</code> (如 99%) 成为可能。</li>
+<li><strong>缺页率 <code>p</code> 的影响巨大</strong>: 由于 <code>T_pf</code> 比 <code>m</code> 大几个数量级 (毫秒 vs 纳秒)，即使很小的 <code>p</code> (如 0.001) 也会导致 EAT 急剧增加。如果 <code>p</code> 过高，系统会花费大量时间在页面换入换出上，称为<strong>颠簸 (Thrashing)</strong>。</li>
+<li><strong>页面大小的影响</strong>:<ul>
+<li><strong>增大页面</strong>:<ul>
+<li><strong>优点</strong>: 减少页表项数量，降低页表大小和内存开销；提高 TLB 命中率 (覆盖更大范围的地址)；降低缺页率 (更好的空间局部性，一次调入更多相关数据)。</li>
+<li><strong>缺点</strong>: 增加<strong>内部碎片</strong>；首次加载或换入换出单个页面的时间变长；可能降低程序的时间局部性（不相关的数据也被加载）。</li>
+</ul>
+</li>
+<li><strong>减小页面</strong>:<ul>
+<li><strong>优点</strong>: 减少内部碎片；更好地适应程序局部性。</li>
+<li><strong>缺点</strong>: 增大页表大小；降低 TLB 命中率；可能增加缺页次数（但每次处理时间短）。</li>
+</ul>
+</li>
+<li>需要权衡选择合适的页面大小。</li>
+</ul>
+</li>
+<li><strong>多级页表</strong>: 以时间换空间。减少了页表在内存中的连续存储需求，但增加了 TLB 未命中时的访问时间。</li>
+</ol>
+<p><strong>结论</strong>: 高效的分页管理依赖于高 TLB 命中率和极低的缺页率。操作系统需要通过有效的页面置换算法来维持低的缺页率。硬件 TLB 的设计对性能至关重要。</p>
+<p>好的，我们来对比一下分页式存储管理和分段式存储管理的主要好处（优点）与坏处（缺点）。</p>
+<p><strong>分页式存储管理 (Paging)</strong></p>
+<p><strong>好处 (优点):</strong></p>
+<ol>
+<li><strong>高内存利用率 (几乎无外部碎片)</strong>: 由于按固定大小的页/帧进行分配，任何空闲的物理帧都可以分配给任何逻辑页。这极大地减少甚至消除了外部碎片，提高了物理内存的利用率。</li>
+<li><strong>内存分配简单</strong>: 管理空闲内存只需维护一个空闲帧列表即可，分配和回收操作相对简单高效。</li>
+<li><strong>支持虚拟内存</strong>: 分页是实现请求调页式虚拟内存的基础。可以只加载程序的一部分页面到内存，其他页放在磁盘上，按需调入，从而支持运行比物理内存更大的程序。</li>
+<li><strong>物理地址空间不必连续</strong>: 进程的页可以分散存储在物理内存的任何可用帧中，提供了很大的灵活性。</li>
+</ol>
+<p><strong>坏处 (缺点):</strong></p>
+<ol>
+<li><strong>内部碎片</strong>: 进程的最后一部分（逻辑地址空间的末尾）通常无法占满一个完整的页，导致该页的剩余部分被浪费，形成内部碎片。平均每个进程会浪费半个页面的空间。</li>
+<li><strong>页表开销</strong>: 需要额外的内存空间来存储页表。对于地址空间非常大的进程或多级页表，页表本身可能占用相当大的内存。</li>
+<li><strong>地址转换开销</strong>: 每次访问内存理论上都需要访问一次页表（存在内存中）才能得到物理地址，增加了内存访问时间。虽然 TLB (快表) 可以大大缓解这个问题，但 TLB 未命中时仍有性能损失。</li>
+<li><strong>不利于逻辑共享和保护</strong>: 页是物理划分单位，与程序的逻辑结构（如函数、数据块）无关。很难按逻辑意义（如共享一个特定的函数或数据结构）进行共享或设置保护权限，因为它们可能跨越页面边界或只占页面的一部分。</li>
+</ol>
+<p><strong>分段式存储管理 (Segmentation)</strong></p>
+<p><strong>好处 (优点):</strong></p>
+<ol>
+<li><strong>符合程序的逻辑结构</strong>: 分段是按照程序的逻辑意义（如代码段、数据段、堆栈段等）划分的，方便用户和编译器组织、管理和理解程序。</li>
+<li><strong>便于共享</strong>: 可以方便地以逻辑段为单位实现共享。例如，多个进程可以共享同一个代码段（只需让它们的段表指向同一个物理代码段）。</li>
+<li><strong>便于保护</strong>: 可以方便地以逻辑段为单位设置不同的访问权限（如代码段只读、数据段可读写），更符合逻辑需求。段表中的限长寄存器也提供了天然的边界保护。</li>
+<li><strong>动态链接与增长</strong>: 段的长度可变，可以更好地适应程序在运行时动态增长的数据结构（如堆栈、堆）。</li>
+<li><strong>无内部碎片</strong>: 段的大小是根据逻辑需求确定的，分配的物理内存大小等于段的大小，不会产生内部碎片。</li>
+</ol>
+<p><strong>坏处 (缺点):</strong></p>
+<ol>
+<li><strong>外部碎片</strong>: 由于段的长度可变，当段被换入换出或释放后，内存中会产生许多不连续的小空闲块（外部碎片）。即使总空闲空间足够，也可能找不到一块足够大的连续空间来装入新的段。</li>
+<li><strong>内存分配复杂</strong>: 需要使用动态分区分配算法（如首次适应、最佳适应等）来查找合适的空闲块，分配和回收的管理开销比分页大。</li>
+<li><strong>可能需要内存紧缩 (Compaction)</strong>: 为了解决外部碎片问题，有时需要移动内存中的段，将小的空闲块合并成大块，这个过程（内存紧缩）非常耗时。</li>
+<li><strong>地址转换相对复杂</strong>: 需要查段表、检查段内偏移量是否越界、进行基址加法运算。</li>
+</ol>
+<p><strong>总结对比:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">分页式 (Paging)</th>
+<th align="left">分段式 (Segmentation)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>优点</strong></td>
+<td align="left">内存利用率高 (无外部碎片)</td>
+<td align="left">符合逻辑结构, 便于共享与保护</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">内存分配简单</td>
+<td align="left">无内部碎片</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">支持虚拟内存基础</td>
+<td align="left">可动态增长</td>
+</tr>
+<tr>
+<td align="left"><strong>缺点</strong></td>
+<td align="left">内部碎片</td>
+<td align="left">外部碎片</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">页表开销大, 地址转换慢 (需TLB)</td>
+<td align="left">内存分配复杂, 可能需内存紧缩</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">不利于逻辑共享与保护</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>分配单位</strong></td>
+<td align="left">页 (物理, 固定大小)</td>
+<td align="left">段 (逻辑, 可变大小)</td>
+</tr>
+<tr>
+<td align="left"><strong>地址空间</strong></td>
+<td align="left">一维 (逻辑上)</td>
+<td align="left">二维 (段号, 段内偏移)</td>
+</tr>
+</tbody></table>
+<p><strong>选择考量:</strong></p>
+<ul>
+<li>如果首要目标是<strong>最大化内存利用率</strong>和简化内存分配管理，<strong>分页</strong>是更好的选择。</li>
+<li>如果首要目标是<strong>支持程序的逻辑结构</strong>，方便实现<strong>共享和保护</strong>，<strong>分段</strong>更具优势。</li>
+</ul>
+<p>实践中，现代操作系统（如 Linux, Windows）和处理器架构（如 x86-64）往往采用<strong>段页式 (Segmented Paging)</strong> 或以<strong>分页为主、分段为辅</strong>的方式，试图结合两者的优点。例如，x86 架构虽然保留了分段机制，但在现代 64 位模式下，分段的作用被大大简化，主要依赖分页机制进行地址转换、保护和虚拟内存管理。</p>
+<p>好的，我们来谈谈<strong>云计算环境下的存储管理方式</strong>。</p>
+<p>与传统操作系统直接管理物理磁盘、内存分页/分段不同，云计算环境下的存储管理更加<strong>抽象化、服务化、分布式和弹性化</strong>。用户通常不直接与物理硬件打交道，而是通过云服务提供商提供的<strong>存储服务接口 (API)</strong> 或管理控制台来配置和使用存储资源。</p>
+<p>云计算存储管理的核心目标是提供<strong>按需分配、高可用、高持久性、可扩展、安全且成本优化</strong>的存储能力。主要可以分为以下几种典型的存储管理方式或服务类型：</p>
+<p><strong>1. 对象存储 (Object Storage)</strong></p>
+<ul>
+<li><strong>基本思想</strong>: 将数据及其关联的元数据 (Metadata) 作为一个整体，称为“对象 (Object)”。对象存储在一个扁平的地址空间（通常称为“桶”或“容器”）中，通过唯一的对象 ID (通常是 HTTP(S) URL) 进行访问。它不提供传统文件系统的层级目录结构。</li>
+<li><strong>管理方式</strong>:<ul>
+<li><strong>分配</strong>: 用户创建存储桶 (Bucket)，然后通过 API (如 RESTful API，S3 API 是事实标准) 上传对象。存储容量通常是<strong>按需无限扩展</strong>的，用户无需预先分配固定大小。</li>
+<li><strong>回收</strong>: 用户通过 API 删除对象或存储桶。</li>
+<li><strong>访问与保护</strong>: 通过 <strong>访问控制列表 (ACL)</strong>、<strong>存储桶策略 (Bucket Policy)</strong> 和 <strong>身份与访问管理 (IAM)</strong> 服务进行精细的权限控制。支持<strong>数据加密</strong> (服务器端加密 SSE、客户端加密)。</li>
+<li><strong>生命周期管理</strong>: 可以设置策略，自动将不常访问的对象迁移到<strong>低成本的存储层</strong> (如 S3 Standard -&gt; S3 Infrequent Access -&gt; S3 Glacier -&gt; S3 Glacier Deep Archive)，或在指定时间后自动删除对象。</li>
+<li><strong>版本控制</strong>: 可以为存储桶启用版本控制，保留对象的历史版本，防止意外删除或覆盖。</li>
+</ul>
+</li>
+<li><strong>特点</strong>: 高度可扩展、高持久性 (通常通过多副本冗余实现)、成本效益高（尤其对于冷数据）、适合存储海量非结构化数据 (图片、视频、日志、备份、静态网站内容、大数据湖等)。访问通常基于 HTTP/S，延迟相对块存储和文件存储较高。</li>
+<li><strong>典型服务</strong>: AWS S3, Azure Blob Storage, Google Cloud Storage (GCS), 阿里云 OSS.</li>
+</ul>
+<p><strong>2. 块存储 (Block Storage)</strong></p>
+<ul>
+<li><strong>基本思想</strong>: 提供原始的、未格式化的存储块设备，类似于物理硬盘 (HDD/SSD) 或 SAN (存储区域网络)。这些块设备可以挂载到云服务器 (虚拟机) 实例上，由实例内的操作系统进行格式化 (如 ext4, NTFS) 和管理文件系统。</li>
+<li><strong>管理方式</strong>:<ul>
+<li><strong>分配</strong>: 用户创建并指定大小和性能类型 (如基于 SSD 的高 IOPS 型、基于 HDD 的吞吐量优化型) 的“卷 (Volume)”，然后将其<strong>附加 (Attach)</strong> 到一个虚拟机实例上。</li>
+<li><strong>回收</strong>: 用户将卷从实例<strong>分离 (Detach)</strong>，然后删除该卷。</li>
+<li><strong>访问与保护</strong>: 通常只能被<strong>单个</strong>实例挂载（某些特定类型支持多重挂载）。安全性依赖于实例的安全组/防火墙规则，以及卷本身的加密选项 (通常在创建时指定)。</li>
+<li><strong>快照 (Snapshot)</strong>: 可以创建卷的时间点快照，用于备份、恢复或创建新的相同内容的卷。</li>
+<li><strong>动态调整</strong>: 许多云平台允许在线调整卷的大小或性能类型。</li>
+</ul>
+</li>
+<li><strong>特点</strong>: 提供低延迟、高 IOPS/吞吐量的存储，适合需要直接块级访问的应用，如<strong>数据库、需要高性能文件系统的应用、操作系统启动盘</strong>等。</li>
+<li><strong>典型服务</strong>: AWS Elastic Block Store (EBS), Azure Disk Storage, Google Cloud Persistent Disk, 阿里云块存储 (ESSD, SSD, 高效云盘等).</li>
+</ul>
+<p><strong>3. 文件存储 (File Storage)</strong></p>
+<ul>
+<li><strong>基本思想</strong>: 提供基于网络的文件共享服务，类似于传统的 NAS (网络附加存储)。它提供标准的<strong>文件系统接口</strong> (如 NFS, SMB/CIFS)，允许多个客户端 (云服务器、本地服务器) 同时挂载同一个文件系统并共享数据。</li>
+<li><strong>管理方式</strong>:<ul>
+<li><strong>分配</strong>: 用户创建文件系统，并选择性能模式、吞吐量模式等。然后通过指定的挂载点 (Mount Target/Endpoint) 在客户端上挂载。容量通常可以<strong>弹性伸缩</strong>。</li>
+<li><strong>回收</strong>: 用户卸载文件系统，然后删除。</li>
+<li><strong>访问与保护</strong>: 通过网络安全规则 (如安全组、NFS 导出策略、Active Directory 集成) 控制访问。支持传输中加密和静态加密。</li>
+<li><strong>备份与恢复</strong>: 通常通过云提供商的备份服务或快照功能进行。</li>
+</ul>
+</li>
+<li><strong>特点</strong>: 提供共享访问、标准的 POSIX 文件系统语义，易于集成现有应用。适合<strong>内容管理系统、Web 服务、开发测试环境、共享代码库、大数据分析 (如与 Hadoop 集群共享数据)、容器持久化存储</strong>等场景。</li>
+<li><strong>典型服务</strong>: AWS Elastic File System (EFS), Azure Files, Google Cloud Filestore, 阿里云 NAS.</li>
+</ul>
+<p><strong>云计算存储管理与传统存储管理的对比与演变</strong></p>
+<ul>
+<li><strong>抽象层级</strong>: 云存储管理远高于传统 OS 级管理。用户关注的是<strong>服务、容量、性能、成本和策略</strong>，而不是物理磁盘布局、柱面、扇区或内存页/帧。</li>
+<li><strong>资源池化与弹性</strong>: 云存储将底层大量物理存储资源池化，通过软件定义存储 (SDS) 技术进行管理，实现按需分配和弹性伸缩，用户无需关心底层硬件的增减。</li>
+<li><strong>管理焦点</strong>: 从管理<strong>物理设备和数据块/页</strong>转变为管理<strong>存储服务、API 调用、访问策略、生命周期规则和成本优化</strong>。</li>
+<li><strong>高可用与持久性</strong>: 云存储通过<strong>冗余、自动故障切换、多区域/多可用区复制</strong>等机制，在服务层面提供了远高于单个物理设备的高可用性和数据持久性保证 (例如 S3 设计提供 99.999999999% 的持久性)。</li>
+<li><strong>安全性</strong>: 云存储提供了更丰富的安全工具和实践，如 IAM 细粒度权限控制、自动加密、密钥管理服务 (KMS)、安全审计日志等，但同时也引入了新的安全挑战（如 API 安全、配置错误）。</li>
+<li><strong>成本模型</strong>: 从<strong>资本支出 (CapEx)</strong> (购买硬件) 转向<strong>运营支出 (OpEx)</strong> (按使用量付费)，需要持续的成本监控和优化。</li>
+</ul>
+<p><strong>总结</strong>:</p>
+<p>云计算存储管理是一种<strong>服务化</strong>的存储模式，它将复杂的底层硬件管理细节隐藏起来，通过 Block, File, Object 等不同的服务类型满足多样化的应用需求。其管理的核心在于利用云平台提供的<strong>API、控制台和自动化工具</strong>，进行资源的<strong>按需配置、权限控制、生命周期管理、数据保护和成本优化</strong>，以实现存储的弹性、可靠、安全和高效。这与传统操作系统关注进程地址空间映射、内存分配回收的机制有着本质的不同。</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://bu.dusays.com/2025/03/20/67dbbc5c11145.png" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://bu.dusays.com/2025/03/20/67dbbc5c11145.png" title="头像" alt="头像"></a><div class="post-copyright__author_name">风铃夜行</div><div class="post-copyright__author_desc">念念不忘，必有回响</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://emptydust.github.io/2024/12/28/os_1/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://emptydust.github.io/2024/12/28/os_1/')">OS_turital</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://emptydust.github.io/2024/12/28/os_1/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=OS_turital&amp;url=https://emptydust.github.io/2024/12/28/os_1/&amp;pic=https://bu.dusays.com/2025/04/17/6801139c15a01.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://emptydust.github.io" target="_blank">Fengling's Blog</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/icpc/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>icpc<span class="tagsPageCount">3</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2025/04/17/6801139b3a847.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/12/28/transformer-replication/"><img class="prev-cover" src="https://bu.dusays.com/2025/04/02/67ecc4815a980.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">transformer_replication</div></div></a></div><div class="next-post pull-right"><a href="/2025/01/06/20250106/"><img class="next-cover" src="https://bu.dusays.com/2025/03/25/67e241dbafd02.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">20250106周报</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2023/12/25/cf1902E/" title="cf1902E"><img class="cover" src="https://bu.dusays.com/2025/03/27/67e4bc6a0d11b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-history fa-fw"></i> 2025-04-23</div><div class="title">cf1902E</div></div></a></div><div><a href="/2023/12/19/cf1913D/" title="cf1913D"><img class="cover" src="https://bu.dusays.com/2025/03/27/67e4bc6a7aee4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-history fa-fw"></i> 2025-04-23</div><div class="title">cf1913D</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src="https://bu.dusays.com/2025/03/20/67dbbc5c11145.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description">魔法改变世界</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">风铃夜行</h1><div class="author-info__desc">念念不忘，必有回响</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/EmptyDust" target="_blank" title="Github"></a></div></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A6%BB%E6%95%A3%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E6%8F%8F%E8%BF%B0-%E5%88%86%E9%A1%B5%E3%80%81%E5%88%86%E6%AE%B5%E3%80%81%E6%AE%B5%E9%A1%B5%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">1. 离散存储管理方式描述 (分页、分段、段页式)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E5%88%86%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86-Paging"><span class="toc-number">1.1.</span> <span class="toc-text">a) 分页式存储管理 (Paging)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E5%88%86%E6%AE%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86-Segmentation"><span class="toc-number">1.2.</span> <span class="toc-text">b) 分段式存储管理 (Segmentation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86-Segmented-Paging"><span class="toc-number">1.3.</span> <span class="toc-text">c) 段页式存储管理 (Segmented Paging)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E7%9A%84%E6%AF%94%E8%BE%83%E5%8F%8A%E6%BC%94%E5%8F%98%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">2. 不同存储管理方式的比较及演变过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%94%E5%8F%98%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">演变过程与原因：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%80%BB%E7%BB%93%E8%A1%A8%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">比较总结表：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%87%8D%E7%82%B9-%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E5%88%B0%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%9A%84%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2-%E5%AE%9E%E9%AA%8C%E3%80%81%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">3. (重点) 逻辑地址到物理地址的地址变换 (实验、计算)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E5%88%86%E9%A1%B5%E5%BC%8F%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">a) 分页式地址变换示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E5%88%86%E6%AE%B5%E5%BC%8F%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">b) 分段式地址变换示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">c) 段页式地址变换示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%9A%BE%E7%82%B9-%E5%88%86%E9%A1%B5%E7%AE%A1%E7%90%86%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">4. (难点) 分页管理性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EAT-%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">EAT 计算公式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%85%B3%E9%94%AE%E7%82%B9%EF%BC%9A"><span class="toc-number">4.2.</span> <span class="toc-text">性能分析关键点：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/23/20250423/" title="20250423周报"><img src="https://bu.dusays.com/2025/04/17/6801139b3a847.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20250423周报"/></a><div class="content"><a class="title" href="/2025/04/23/20250423/" title="20250423周报">20250423周报</a><time datetime="2025-04-23T06:22:22.000Z" title="发表于 2025-04-23 14:22:22">2025-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/16/20250416/" title="20250416周报"><img src="https://bu.dusays.com/2025/04/17/68011124c9b8f.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20250416周报"/></a><div class="content"><a class="title" href="/2025/04/16/20250416/" title="20250416周报">20250416周报</a><time datetime="2025-04-16T01:00:00.000Z" title="发表于 2025-04-16 09:00:00">2025-04-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/09/20250409/" title="20250409周报"><img src="https://bu.dusays.com/2025/03/25/67e241c5ad5eb.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20250409周报"/></a><div class="content"><a class="title" href="/2025/04/09/20250409/" title="20250409周报">20250409周报</a><time datetime="2025-04-09T01:00:00.000Z" title="发表于 2025-04-09 09:00:00">2025-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/2025GSoCProposal/" title="2025GSoC Proposal: Efficient Video Content Analysis via Batch Prediction and Context Caching with Gemini APIs"><img src="https://bu.dusays.com/2025/04/02/67ecc480e6d3e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025GSoC Proposal: Efficient Video Content Analysis via Batch Prediction and Context Caching with Gemini APIs"/></a><div class="content"><a class="title" href="/2025/04/02/2025GSoCProposal/" title="2025GSoC Proposal: Efficient Video Content Analysis via Batch Prediction and Context Caching with Gemini APIs">2025GSoC Proposal: Efficient Video Content Analysis via Batch Prediction and Context Caching with Gemini APIs</a><time datetime="2025-04-02T04:58:34.000Z" title="发表于 2025-04-02 12:58:34">2025-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/20250402/" title="20250402周报"><img src="https://bu.dusays.com/2025/04/02/67ecc4813f8e1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20250402周报"/></a><div class="content"><a class="title" href="/2025/04/02/20250402/" title="20250402周报">20250402周报</a><time datetime="2025-04-02T01:00:00.000Z" title="发表于 2025-04-02 09:00:00">2025-04-02</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2025 By <a class="footer-bar-link" href="/" title="风铃夜行" target="_blank">风铃夜行</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://7bu.top/" title="图床">图床</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="沪ICP备2025118581号-1">沪ICP备2025118581号-1</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">2</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.emptydust.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/homework/" style="font-size: 0.88rem;">homework<sup>2</sup></a><a href="/tags/icpc/" style="font-size: 0.88rem;">icpc<sup>3</sup></a><a href="/tags/weekly-report/" style="font-size: 0.88rem;">weekly report<sup>12</sup></a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">机器学习<sup>2</sup></a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 0.88rem;">随笔<sup>1</sup></a></div></div><hr/></div></div><div id="keyboard-tips"><div class="keyboardTitle">博客快捷键</div><div class="keybordList"><div class="keybordItem"><div class="keyGroup"><div class="key">shift K</div></div><div class="keyContent"><div class="content">关闭快捷键功能</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift A</div></div><div class="keyContent"><div class="content">打开/关闭中控台</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift M</div></div><div class="keyContent"><div class="content">播放/暂停音乐</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift D</div></div><div class="keyContent"><div class="content">深色/浅色显示模式</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift S</div></div><div class="keyContent"><div class="content">站内搜索</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift R</div></div><div class="keyContent"><div class="content">随机访问</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift H</div></div><div class="keyContent"><div class="content">返回首页</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift F</div></div><div class="keyContent"><div class="content">友链鱼塘</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift L</div></div><div class="keyContent"><div class="content">友链页面</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift P</div></div><div class="keyContent"><div class="content">关于本站</div></div></div><div class="keybordItem"><div class="keyGroup"><div class="key">shift I</div></div><div class="keyContent"><div class="content">原版/本站右键菜单</div></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://music.163.com/#/playlist?id=2819019384&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2025 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 风铃夜行 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
