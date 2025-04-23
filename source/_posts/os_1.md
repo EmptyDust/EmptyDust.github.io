@@ -1,6 +1,6 @@
 ---
 title: OS_turital
-date: 2024-12-28 21:33:12
+date: 2025-4-23 21:33:12
 tags: 'icpc'
 categories: '大学生涯'
 cover: https://bu.dusays.com/2025/04/17/6801139c15a01.jpg

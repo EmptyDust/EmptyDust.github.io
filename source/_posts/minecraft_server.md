@@ -1,6 +1,6 @@
 ---
 title: Mandelbrot_Set
-date: 2024-04-23 16:12:35
+date: 2025-04-23 16:12:35
 tags: 'homework'
 categories: '大学生涯'
 cover: https://bu.dusays.com/2025/04/17/680113aa44efa.jpg
