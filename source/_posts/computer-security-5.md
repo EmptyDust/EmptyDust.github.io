@@ -2,6 +2,7 @@
 title: computer-security-5
 date: 2025-06-01 23:26:27
 tags:
+cover: https://bu.dusays.com/2025/06/03/683de1b16a078.jpg
 ---
 
 ## 实验五 电力信息安全
