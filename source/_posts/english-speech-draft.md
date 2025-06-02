@@ -2,6 +2,7 @@
 title: english_speech_draft
 date: 2025-05-20 21:00:22
 tags:
+cover: https://bu.dusays.com/2025/06/03/683dd03c102f3.jpg
 ---
 
 **Chinese Youth Leading the Innovation Tide – The Driving Force Behind National Soaring**

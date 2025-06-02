@@ -2,6 +2,7 @@
 title: english_speech_homework
 date: 2025-05-20 20:52:58
 tags:
+cover: https://bu.dusays.com/2025/06/03/683dcffc89159.jpg
 ---
 
 **Overall Goal:** Soaring

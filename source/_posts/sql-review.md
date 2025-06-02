@@ -2,6 +2,7 @@
 title: sql_review
 date: 2025-05-30 10:20:59
 tags:
+cover: https://bu.dusays.com/2025/06/03/683dd05fc5963.jpg
 ---
 ```sql
 insert into tn (a, b, c) values (A, B, C);

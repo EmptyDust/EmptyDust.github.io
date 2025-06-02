@@ -2,6 +2,7 @@
 title: os-8
 date: 2025-05-22 08:32:18
 tags: os
+cover: https://bu.dusays.com/2025/06/03/683dcffe58ed7.jpg
 ---
 
 ## 实验目的

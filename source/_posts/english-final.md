@@ -1,7 +1,8 @@
 ---
 title: english_final
 date: 2025-05-27 21:45:38
-tags:
+tags: 
+cover: https://bu.dusays.com/2025/06/03/683dd843daeb0.jpg
 ---
 
 **Chinese Youth Leading the Innovation Tide – The Driving Force Behind National Soaring**
