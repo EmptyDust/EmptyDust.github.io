@@ -2,6 +2,7 @@
 title: cloud_database_security
 date: 2025-05-21 21:53:48
 tags:
+cover: https://bu.dusays.com/2025/06/05/6840f44fdacb4.png
 ---
 
 ## 实现方式

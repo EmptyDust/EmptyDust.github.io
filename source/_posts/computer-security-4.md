@@ -2,9 +2,7 @@
 title: computer-security-4
 date: 2025-05-25 22:58:12
 tags:
----
-Okay, here is the lab experiment converted into a formal lab report format.
-
+cover: https://bu.dusays.com/2025/06/05/6840f45578993.png
 ---
 
 ### **摘要**
