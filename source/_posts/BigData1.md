@@ -2,6 +2,7 @@
 title: BigData-1 HDFS Command
 date: 2025-09-21 18:45:55
 tags: 大数据
+cover: https://bu.dusays.com/2025/06/05/6840f476db804.png
 ---
 
 ## 步骤3 
