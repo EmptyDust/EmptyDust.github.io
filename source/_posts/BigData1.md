@@ -5,9 +5,12 @@ tags: 大数据
 cover: https://bu.dusays.com/2025/06/05/6840f476db804.png
 ---
 
-## 步骤3 
 
-### ssh连接hadoop服务器
+## Part1
+
+### 步骤3 
+
+#### ssh连接hadoop服务器
 
 ```sh
 ssh master
@@ -18,11 +21,11 @@ ssh slave3
 
 建议开启五个tab，最后一个是主机，不执行任何ssh命令
 
-### terminal开启更多tab
+#### terminal开启更多tab
 
 左上角file->open tab
 
-## 步骤4
+### 步骤4
 
 在master的tab中执行：
 
@@ -36,7 +39,7 @@ mkdir -p ~/Desktop/workspace/hdfs_op
 cd ~/Desktop/workspace/hdfs_op
 ```
 
-## 步骤5
+### 步骤5
 
 如果需要创建多层目录，可以使用参数“-p”
 
@@ -57,7 +60,7 @@ hadoop fs -mkdir /newDir
 hadoop fs -rm -r /newDir
 ```
 
-## 步骤6
+### 步骤6
 
 查看当前目录位置
 ```sh
@@ -118,13 +121,13 @@ hadoop fs -chmod 777 /newDir/hello_mv.txt
 hadoop fs -rm /newDir/hello_mv.txt
 ```
 
-## 步骤7
+### 步骤7
 查看文件系统信息
 ```sh
 hadoop fs -df -h
 ```
 
-## 步骤8 习题
+### 步骤8 习题
 均在master tab完成
 ```sh
 hadoop fs -mkdir /mydir
@@ -137,3 +140,14 @@ hadoop fs -ls /mydir
 hadoop fs -chmod 600 /mydir/homework.txt
 hadoop fs -ls /mydir
 ```
+
+### 作业
+Recommend References:
+[HDFS 07 - HDFS 性能调优之 合并小文件](https://www.cnblogs.com/shoufeng/p/14907411.html)
+[Hadoop - getmerge Command](https://www.geeksforgeeks.org/data-engineering/hadoop-getmerge-command/)
+[Merging small files into single file in hdfs](https://stackoverflow.com/questions/50094165/merging-small-files-into-single-file-in-hdfs)
+
+
+## Part2
+已实测希冀平台上所有程序均可运行。
+之后可能会更新HShell和作业提示。
