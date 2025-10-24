@@ -270,13 +270,13 @@ template<const int &MOD> struct Zmod {
         assert(x != 0);
         return mypow(*this, MOD - 2);
     }
-    friend constexpr auto &operator>>(istream &in, Zmod &j) {
+    friend constexpr auto &operator>>(std::istream &in, Zmod &j) {
         int v;
         in >> v;
         j = Zmod(v);
         return in;
     }
-    friend constexpr auto &operator<<(ostream &o, const Zmod &j) {
+    friend constexpr auto &operator<<(std::ostream &o, const Zmod &j) {
         return o << j.val();
     }
     constexpr Zmod &operator++() {
