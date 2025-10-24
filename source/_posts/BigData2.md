@@ -7,16 +7,16 @@ tags:
 ## 作业
 将csv文件导入希冀平台
 更多-上传文件至远程桌面
-![alt text](image.png)
+![image.png](https://bu.dusays.com/2025/10/24/68faf98ec0ac4.png)
 
 首先将数据上传到hadoop服务器
-![alt text](image-2.png)
+![image-2.png](https://bu.dusays.com/2025/10/24/68faf98ea3e1b.png)
 
 这里，建议先根据希冀平台的教程跑通 WordCount 项目。注意 Hadoop MapReduce 作业要求输出目录不能预先存在，以防止数据覆盖或丢失。[Deepseek chat](https://chat.deepseek.com/share/ml9s9z8um3n8wcc1l7)
 
 使用cat命令查看文件存储格式
 观察到使用换行分割一组数据，逗号分隔一项数据
-![alt text](image-1.png)
+![image-1.png](https://bu.dusays.com/2025/10/24/68faf98ed1c2a.png)
 
 ### 作业代码
 ```java
