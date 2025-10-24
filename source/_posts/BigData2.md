@@ -18,7 +18,13 @@ tags:
 观察到使用换行分割一组数据，逗号分隔一项数据
 ![image-1.png](https://bu.dusays.com/2025/10/24/68faf98ed1c2a.png)
 
+关于代码实现，有以下几个思考，可选择性采纳：
+1. 根据数据格式自定义Writable并重写toString函数
+2. readline已经被废弃，建议使用BufferReader
+3. 直接全部使用LongWritable传输，在必要时转换为float格式
+
 ### 作业代码
+以下仅供参考
 ```java
 import java.io.IOException;
 import java.time.LocalDate;
@@ -42,7 +48,7 @@ public class WcMap extends Mapper<LongWritable, Text, Text, DoubleWritable>{
             String type = temp[3];
             double x = Float.parseFloat(temp[4]);
             if(type.equals("Residential-Power-Usage")){
-                context.write(new Text("cnt"), new DoubleWritable(1));
+                // context.write(new Text("cnt"), new DoubleWritable(1));
                 String y_m = temp[0].substring(0, 7);
                 context.write(new Text(y_m), new DoubleWritable(x));
             }
