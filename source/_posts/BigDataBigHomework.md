@@ -33,3 +33,5 @@ bash /scripts/hbase/start-hbase.sh
 nohup /opt/module/kafka/bin/kafka-server-start.sh /opt/module/kafka/config/server.properties &> output.log &
 /opt/module/hbase-1.1.5/bin/hbase-daemon.sh start thrift
 ```
+
+# TBD
