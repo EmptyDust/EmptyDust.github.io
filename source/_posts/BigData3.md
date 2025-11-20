@@ -1,5 +1,5 @@
 ---
-title: BigData3
+title: BigData3 基于HIVE的数据分析 
 date: 2025-11-13 13:48:53
 tags:
 ---
@@ -13,13 +13,11 @@ tags:
 
 然后就可以载入数据了。
 
-
-
-疑似hive不支持使用##作为分隔符，因此我采取了正则匹配成功加载了数据。
+hive不支持使用##作为分隔符，采取了正则匹配成功加载了数据。
 
 first edition was made by deepseek
 fix by fengling
-thank for zc.
+thank for @zc.
 ```sql
 -- =============================================
 -- 1. Create Tables and Import Data
