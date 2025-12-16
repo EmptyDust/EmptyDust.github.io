@@ -1,0 +1,1 @@
+call "C:\Users\14224\AppData\Roaming\fnm\node-versions\v22.14.0\installation\picgo.cmd" upload %*
