@@ -1,7 +1,8 @@
 ---
 title: BigData2 MapReduce
 date: 2025-10-23 16:06:35
-tags:
+tags: 大数据
+cover: https://bu.dusays.com/2026/01/16/696a473e4a658.png
 ---
 
 ## 作业

@@ -1,7 +1,8 @@
 ---
 title: BigData5 HBase编程
 date: 2025-12-04 08:23:11
-tags:
+tags: 大数据
+cover: https://bu.dusays.com/2026/01/16/696a473e6d886.jpg
 ---
 
 本章节没有找到问题。
