@@ -29,14 +29,31 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.x"
-          # 注意：这里去掉了 cache: 'yarn'，为了避免版本冲突报错
-          # 如果需要缓存 Yarn 4，通常需要手动配置 actions/cache，但为了先跑通，暂时去掉
 
       - name: 启用 Corepack (激活 Yarn 4)
         run: corepack enable
 
-      - name: 安装依赖
+      - name: 安装 Anzhiyu 主题
         run: |
-          yarn global add gulp-cli
-          # --frozen-lockfile 确保使用 yarn.lock 中的精确版本
-          # 如果这一步报错，说明本地 yarn.lock 和远程环境不兼容，
+          # 只是克隆主题代码，不需要在这里 install
+          git clone -b main https://github.com/anzhiyu-c/hexo-theme-anzhiyu.git themes/anzhiyu
+
+      - name: 安装项目依赖
+        run: |
+          # 这一步会根据新的 package.json 安装所有东西
+          # 包括：hexo核心、渲染器(pug/stylus)、gulp、bangumi插件
+          yarn install --immutable
+
+      - name: 生成静态文件
+        run: |
+          npx hexo clean
+          npx hexo bangumi -u
+          npx hexo generate
+          # 如果以后需要 gulp，取消注释即可，不需要再安装 gulp-cli
+          # npx gulp 
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
