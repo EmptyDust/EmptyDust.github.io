@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # 1. 监控 npm/yarn 依赖 (Hexo 插件)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "06:00"
+      timezone: "Asia/Shanghai"
+    # 限制同时打开的 PR 数量，避免被淹没
+    open-pull-requests-limit: 10
+    # 针对 Yarn 项目的优化
+    versioning-strategy: increase
+    # 分组策略：将所有 hexo 相关的包合并成一个 PR
+    groups:
+      hexo-dependencies:
+        patterns:
+          - "hexo*"
+          - "hexo-*"
+      themes:
+        patterns:
+          - "picgo"
+          - "gulp*"
+
+  # 2. 监控 GitHub Actions (deploy.yml 里的 uses)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
