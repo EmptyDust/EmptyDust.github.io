@@ -2,7 +2,7 @@
 title: os-homework-7-地址映射与共享
 date: 2025-05-21 14:19:57
 tags: os
-cover: https://bu.dusays.com/2025/06/05/6840f449d6480.png
+cover: https://bu.dusays.com/2026/01/16/696a474e2d46d.png
 ---
 
 该实验报告基本按照参考文献，但改正了一些笔误/错误并按照我实际运行结果修改了部分值。
