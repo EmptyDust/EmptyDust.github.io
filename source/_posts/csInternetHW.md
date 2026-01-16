@@ -2,6 +2,7 @@
 title: csInternetHW
 date: 2026-01-13 16:44:45
 tags:
+cover: https://bu.dusays.com/2026/01/16/696a473f7bb28.png
 ---
 
 ## 步骤1：基础网络配置

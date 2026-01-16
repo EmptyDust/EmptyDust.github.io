@@ -1,7 +1,8 @@
 ---
 title: BigData3 基于HIVE的数据分析 
 date: 2025-11-13 13:48:53
-tags:
+tags: 大数据
+cover: https://bu.dusays.com/2026/01/16/696a473ebab3d.jpg
 ---
 
 # 作业

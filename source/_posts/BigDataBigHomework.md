@@ -1,7 +1,8 @@
 ---
 title: BigDataBigHomework 大数据综合实训
 date: 2025-11-20 16:18:20
-tags:
+tags: 大数据
+cover: https://bu.dusays.com/2026/01/16/696a473f36374.jpg
 ---
 
 由于全搬希冀平台的实验细节篇幅过长，因此本篇只起到查漏补缺的作用。

@@ -1,7 +1,7 @@
 ---
 title: bochs 调试基本指令大全
 date: 2025-05-21 22:26:36
-tags:
+tags: 操作系统
 cover: https://bu.dusays.com/2025/04/17/6801139b3a847.jpg
 ---
 

@@ -2,6 +2,7 @@
 title: picgoCLI+piclist 在vscode-markdown文件中直接导入图床上图片
 date: 2025-12-16 11:45:26
 tags:
+cover: https://bu.dusays.com/2026/01/16/696a47447c841.jpg
 ---
 
 使用 `picgo`(cli) + `piclist`(vscode plugin) 实现在vscode-markdown文件中直接导入图床上图片
