@@ -6,14 +6,16 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "bangumi": "hexo bangumi -u"
   },
   "hexo": {
     "version": "8.1.1"
   },
   "dependencies": {
-    "hexo": "^8.1.1",
+    "hexo": "^7.0.0",
     "hexo-algolia": "^1.3.2",
+    "hexo-bilibili-bangumi": "^1.5.3",
     "hexo-filter-mathjax": "^0.9.1",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -26,6 +28,10 @@
     "hexo-server": "^3.0.0",
     "hexo-wordcount": "^6.0.1",
     "picgo": "^1.8.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0"
   },
   "packageManager": "yarn@4.1.1+sha512.ec40d0639bb307441b945d9467139cbb88d14394baac760b52eca038b330d16542d66fef61574271534ace5a200518dabf3b53a85f1f9e4bfa37141b538a9590"
 }
