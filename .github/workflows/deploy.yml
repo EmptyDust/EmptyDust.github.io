@@ -14,59 +14,44 @@ jobs:
     permissions:
       contents: write
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }} #
+      group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
       - name: Set Timezone
         run: export TZ='Asia/Shanghai'
 
       - name: 检查分支
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # 升级到 v4
         with:
           fetch-depth: 0
 
       - name: 安装 Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4 # 升级到 v4 (v1 已过时)
         with:
           node-version: "22.x"
+          cache: 'yarn' # 开启 yarn 自动缓存，替代了下面手写的 cache 步骤
 
-      - name: 缓存 Hexo
-        id: cache-npm
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      # 旧的手动缓存步骤已移除，setup-node@v4 自带缓存功能
 
       - name: 安装依赖
-        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         run: |
-          npm install gulp-cli -g
-          npm ci
-          # npm install hexo-algolia --save
+          # 全局安装 gulp-cli (使用 yarn)
+          yarn global add gulp-cli
+          # 安装项目依赖 (相当于 npm ci，但读取 yarn.lock)
+          yarn install --frozen-lockfile
 
-      - name: 安装 Anzhiyu 主题
+      - name: 安装 Anzhiyu 主题及相关插件
         run: |
+          # 克隆主题
           git clone -b main https://github.com/anzhiyu-c/hexo-theme-anzhiyu.git themes/anzhiyu
-          npm install hexo-renderer-pug hexo-renderer-stylus --save
-          npm install
-          # 如果你的主题有其他依赖，也在这里安装
+          
+          # 安装渲染器 (使用 yarn add)
+          # 注意：建议尽量把这些依赖写进 package.json 并在本地安装好，而不要在 CI 里临时 add
+          yarn add hexo-renderer-pug hexo-renderer-stylus
+          
+          # 再次确保所有依赖安装完成
+          yarn install
 
       - name: 生成静态文件
         run: |
-          npx hexo clean
-          npx hexo bangumi -u #bilibili番剧更新
-          npx hexo generate
-          # npx hexo algolia
-          # gulp
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          npx hexo
