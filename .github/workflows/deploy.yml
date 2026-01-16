@@ -21,37 +21,22 @@ jobs:
         run: export TZ='Asia/Shanghai'
 
       - name: 检查分支
-        uses: actions/checkout@v4 # 升级到 v4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 安装 Node
-        uses: actions/setup-node@v4 # 升级到 v4 (v1 已过时)
+        uses: actions/setup-node@v4
         with:
           node-version: "22.x"
-          cache: 'yarn' # 开启 yarn 自动缓存，替代了下面手写的 cache 步骤
+          # 注意：这里去掉了 cache: 'yarn'，为了避免版本冲突报错
+          # 如果需要缓存 Yarn 4，通常需要手动配置 actions/cache，但为了先跑通，暂时去掉
 
-      # 旧的手动缓存步骤已移除，setup-node@v4 自带缓存功能
+      - name: 启用 Corepack (激活 Yarn 4)
+        run: corepack enable
 
       - name: 安装依赖
         run: |
-          # 全局安装 gulp-cli (使用 yarn)
           yarn global add gulp-cli
-          # 安装项目依赖 (相当于 npm ci，但读取 yarn.lock)
-          yarn install --frozen-lockfile
-
-      - name: 安装 Anzhiyu 主题及相关插件
-        run: |
-          # 克隆主题
-          git clone -b main https://github.com/anzhiyu-c/hexo-theme-anzhiyu.git themes/anzhiyu
-          
-          # 安装渲染器 (使用 yarn add)
-          # 注意：建议尽量把这些依赖写进 package.json 并在本地安装好，而不要在 CI 里临时 add
-          yarn add hexo-renderer-pug hexo-renderer-stylus
-          
-          # 再次确保所有依赖安装完成
-          yarn install
-
-      - name: 生成静态文件
-        run: |
-          npx hexo
+          # --frozen-lockfile 确保使用 yarn.lock 中的精确版本
+          # 如果这一步报错，说明本地 yarn.lock 和远程环境不兼容，
