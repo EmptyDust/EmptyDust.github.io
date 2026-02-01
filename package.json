@@ -29,7 +29,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-wordcount": "^6.0.1",
-    "picgo": "^1.5.11"
+    "picgo": "^2.0.0"
   },
   "devDependencies": {
     "gulp": "^5.0.0",
