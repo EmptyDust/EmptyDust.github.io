@@ -2186,9 +2186,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hexo-bilibili-bangumi@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "hexo-bilibili-bangumi@npm:2.0.2"
+"hexo-bilibili-bangumi@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "hexo-bilibili-bangumi@npm:2.0.4"
   dependencies:
     "@babel/runtime": "npm:^7.18.0"
     axios: "npm:^1.0.0"
@@ -2200,7 +2200,7 @@ __metadata:
     progress: "npm:^2.0.3"
     pug: "npm:^3.0.3"
     tunnel: "npm:^0.0.6"
-  checksum: 10c0/18209ca7dcb4d57214d5c6dacaad2de7279591294d2a858e47f7aeec6f021015cf9726148e56374e5107476ba5e15c735b4a867e2d29c794b61f82dc1006e378
+  checksum: 10c0/c65cba1615d912f77805dce3aaf2b7d17f9a4b8a668f2373c8f1f0e2b76f611d51f5ff531f07d6a48d3b68bfb1c8400d545edc7147498ca4496715021fa5d794
   languageName: node
   linkType: hard
 
@@ -2402,7 +2402,7 @@ __metadata:
     gulp-cli: "npm:^3.1.0"
     hexo: "npm:^8.1.1"
     hexo-algolia: "npm:^1.3.2"
-    hexo-bilibili-bangumi: "npm:^2.0.2"
+    hexo-bilibili-bangumi: "npm:^2.0.4"
     hexo-cli: "npm:^4.3.0"
     hexo-filter-mathjax: "npm:^0.9.1"
     hexo-generator-archive: "npm:^2.0.0"
