@@ -1,0 +1,44 @@
+/* Comment area polish for giscus and other systems */
+#post-comment {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border: var(--style-border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(66, 90, 239, 0.08), rgba(255, 255, 255, 0)) , var(--anzhiyu-card-bg);
+  box-shadow: var(--anzhiyu-shadow-border);
+}
+
+#post-comment .comment-headline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#post-comment .comment-headline i {
+  color: var(--anzhiyu-theme);
+}
+
+#post-comment .comment-switch {
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  background: var(--anzhiyu-secondbg);
+}
+
+#post-comment .comment-wrap > div {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: var(--style-border);
+  background: var(--anzhiyu-card-bg);
+}
+
+#post-comment #giscus-wrap iframe,
+#post-comment #giscus-wrap {
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  #post-comment {
+    padding: 1rem;
+  }
+}
