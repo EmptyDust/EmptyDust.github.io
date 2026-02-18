@@ -18,14 +18,13 @@ tags: note
 
 ### Text
 
-$ \cos^2 x + \sin^2 x = 1 $
-$ 1 + \sin^2 x = \sec^2 x $
-$ 1 + \cos^2 x = \csc^2 x $
-
-$ \sin(A+B) = \sin(A)\cos(B) + \cos(A)\sin(B) $
-$ \cos(A+B) = \cos(A)\cos(B) - \sin(A)\sin(B) $
-$ \sin(A-B) = \sin(A)\cos(B) - \cos(A)\sin(B) $
-$ \cos(A-B) = \cos(A)\cos(B) + \sin(A)\sin(B) $
+$$ \cos^2 x + \sin^2 x = 1 $$
+$$ 1 + \sin^2 x = \sec^2 x $$
+$$ 1 + \cos^2 x = \csc^2 x $$
+$$ \sin(A+B) = \sin(A)\cos(B) + \cos(A)\sin(B) $$
+$$ \cos(A+B) = \cos(A)\cos(B) - \sin(A)\sin(B) $$
+$$ \sin(A-B) = \sin(A)\cos(B) - \cos(A)\sin(B) $$
+$$ \cos(A-B) = \cos(A)\cos(B) + \sin(A)\sin(B) $$
 
 关于极限约分的方式：
 1. 因式分解
