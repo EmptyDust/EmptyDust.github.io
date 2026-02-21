@@ -2,6 +2,7 @@
 title: Princeton-calculus-Reader-revised-edition-note-1
 date: 2026-02-17 11:37:41
 tags: note
+cover: https://bu.dusays.com/2026/02/19/6997084999527.png
 ---
 
 20260217 正月初一

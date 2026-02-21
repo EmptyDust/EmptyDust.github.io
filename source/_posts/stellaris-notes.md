@@ -2,6 +2,7 @@
 title: 群星游玩笔记
 date: 2026-02-05 16:47:20
 tags:
+cover: https://bu.dusays.com/2026/02/19/69970633680fb.png
 ---
 
 最近想游玩P社大作群星，因此开此记事本
