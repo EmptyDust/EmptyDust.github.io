@@ -2,6 +2,7 @@
 title: 001-关于风铃
 date: 2026-02-17 23:23:09
 tags: essay
+cover: https://bu.dusays.com/2026/02/21/6999ad42427eb.jpeg
 ---
 
 起名是一件有趣的事，名字或许确实可以影响一部分人生。
