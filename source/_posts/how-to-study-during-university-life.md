@@ -2,6 +2,7 @@
 title: 知乎博主 @东川路第一伊蕾娜 推文读后感(2026.02.18)
 date: 2026-02-18 23:25:40
 tags:
+cover: https://bu.dusays.com/2026/02/19/699705d0e0165.png
 ---
 
 ## Lead

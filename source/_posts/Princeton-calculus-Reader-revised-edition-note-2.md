@@ -1,7 +1,8 @@
 ---
 title: Princeton-calculus-Reader-revised-edition-note-2
 date: 2026-02-18 12:09:26
-tags:
+tags: 
+cover: https://bu.dusays.com/2026/02/19/6997084999527.png
 ---
 
 ### Text
