@@ -20,8 +20,8 @@ cover: https://bu.dusays.com/2026/02/19/6997084999527.png
 ### Text
 
 $$ \cos^2 x + \sin^2 x = 1 $$
-$$ 1 + \sin^2 x = \sec^2 x $$
-$$ 1 + \cos^2 x = \csc^2 x $$
+$$ 1 + \tan^2 x = \sec^2 x $$
+$$ 1 + \cot^2 x = \csc^2 x $$
 $$ \sin(A+B) = \sin(A)\cos(B) + \cos(A)\sin(B) $$
 $$ \cos(A+B) = \cos(A)\cos(B) - \sin(A)\sin(B) $$
 $$ \sin(A-B) = \sin(A)\cos(B) - \cos(A)\sin(B) $$
