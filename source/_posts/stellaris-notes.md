@@ -10,6 +10,7 @@ cover: https://bu.dusays.com/2026/02/19/69970633680fb.png
 游戏资源：https://www.sharelikes.com.cn/
 建议本体steam购买
 
-群星配船
-![alt text](061d4835d7173e9535ee30b7935be258.png)
+<!-- 群星配船
+![alt text](061d4835d7173e9535ee30b7935be258.png) -->
 
+暂时停更，没时间玩
