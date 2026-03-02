@@ -1058,9 +1058,9 @@ css_prefix: true
 home_top:
   enable: true # 开关
   timemode: date #date/updated
-  title: 生活明朗
-  subTitle: 万物可爱。
-  siteText: anheyu.com
+  title: 
+  subTitle: 
+  siteText: 
   category:
     - name: 算竞
       path: /categories/算法竞赛/
@@ -1083,10 +1083,10 @@ home_top:
     swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css #swiper css依赖
     swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js #swiper js依赖
   banner:
-    tips: 上海电力大学网站助手
-    title: inSUEP
+    tips: 
+    title: 
     image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
-    link: http://insuep.emptydust.com/
+    link: 
 
 # 朋友圈配置
 friends_vue:
