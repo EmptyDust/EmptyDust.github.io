@@ -2416,7 +2416,7 @@ __metadata:
     hexo-renderer-stylus: "npm:^3.0.1"
     hexo-server: "npm:^3.0.0"
     hexo-wordcount: "npm:^6.0.1"
-    picgo: "npm:^2.0.0"
+    picgo: "npm:^2.0.3"
   languageName: unknown
   linkType: soft
 
@@ -3904,9 +3904,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picgo@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "picgo@npm:2.0.0"
+"picgo@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "picgo@npm:2.0.3"
   dependencies:
     "@hono/node-server": "npm:^1.19.7"
     "@picgo/i18n": "npm:^1.0.0"
@@ -3937,7 +3937,7 @@ __metadata:
     tunnel: "npm:^0.0.6"
   bin:
     picgo: bin/picgo
-  checksum: 10c0/7148614a8741f1a9d558f9ba4e06903ef4d50695dda8c752b6d0c34e493f56d47599ea8e92216361b9ce0612fdaee8cdc2bc7637ffb80a0a52623ccd889704bf
+  checksum: 10c0/26c6f5ce4bf31222576f834de15d2259e4c4b55453f02b1652237513aa93c855bbf62921f2d7fb64c6a5734b3634784ac1cfdec135119730ef11306388c56920
   languageName: node
   linkType: hard
 
