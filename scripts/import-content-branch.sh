@@ -24,7 +24,12 @@ if ! git rev-parse --verify "$content_branch" >/dev/null 2>&1; then
   exit 1
 fi
 
-mapfile -t content_paths < <(grep -Ev '^[[:space:]]*(#|$)' "$paths_file")
+content_paths=()
+
+while IFS= read -r path; do
+  [[ -z "$path" || "$path" =~ ^[[:space:]]*# ]] && continue
+  content_paths+=("$path")
+done < "$paths_file"
 
 if [[ ${#content_paths[@]} -eq 0 ]]; then
   echo "No content paths configured." >&2
