@@ -7,6 +7,7 @@ cover: https://bu.dusays.com/2026/01/16/696a473ec5ad0.jpg
 
 数据在项目根目录下
 By Gemini3 Pro Review
+
 ```py
 import sys
 import os

@@ -6,6 +6,7 @@ cover: https://bu.dusays.com/2026/01/16/696a473e4a658.png
 ---
 
 ## 作业
+
 将csv文件导入希冀平台
 更多-上传文件至远程桌面
 ![image.png](https://bu.dusays.com/2025/10/24/68faf98ec0ac4.png)
@@ -20,12 +21,15 @@ cover: https://bu.dusays.com/2026/01/16/696a473e4a658.png
 ![image-1.png](https://bu.dusays.com/2025/10/24/68faf98ed1c2a.png)
 
 关于代码实现，有以下几个思考，可选择性采纳：
+
 1. 根据数据格式自定义Writable并重写toString函数
 2. readline已经被废弃，建议使用BufferReader
 3. 直接全部使用LongWritable传输，在必要时转换为float格式
 
 ### 作业代码
+
 以下仅供参考
+
 ```java
 import java.io.IOException;
 import java.time.LocalDate;
@@ -67,7 +71,6 @@ public class WcMap extends Mapper<LongWritable, Text, Text, DoubleWritable>{
 // /mapreduce/WordCount/input
 // /mapreduce/WordCount/output
 ```
-
 
 ```java
 import java.io.IOException;
@@ -236,90 +239,90 @@ outputPath:/hw/result/
 2025-10-24 03:56:35,420 INFO  [main] mapreduce.Job (Job.java:monitorAndPrintJob(1367)) -  map 100% reduce 100%
 2025-10-24 03:56:35,421 INFO  [main] mapreduce.Job (Job.java:monitorAndPrintJob(1378)) - Job job_local2126170186_0001 completed successfully
 2025-10-24 03:56:35,436 INFO  [main] mapreduce.Job (Job.java:monitorAndPrintJob(1385)) - Counters: 35
-	File System Counters
-		FILE: Number of bytes read=41434
-		FILE: Number of bytes written=607543
-		FILE: Number of read operations=0
-		FILE: Number of large read operations=0
-		FILE: Number of write operations=0
-		HDFS: Number of bytes read=72126
-		HDFS: Number of bytes written=887
-		HDFS: Number of read operations=13
-		HDFS: Number of large read operations=0
-		HDFS: Number of write operations=4
-	Map-Reduce Framework
-		Map input records=631
-		Map output records=1262
-		Map output bytes=18003
-		Map output materialized bytes=20533
-		Input split bytes=101
-		Combine input records=0
-		Combine output records=0
-		Reduce input groups=43
-		Reduce shuffle bytes=20533
-		Reduce input records=1262
-		Reduce output records=43
-		Spilled Records=2524
-		Shuffled Maps =1
-		Failed Shuffles=0
-		Merged Map outputs=1
-		GC time elapsed (ms)=15
-		Total committed heap usage (bytes)=553648128
-	Shuffle Errors
-		BAD_ID=0
-		CONNECTION=0
-		IO_ERROR=0
-		WRONG_LENGTH=0
-		WRONG_MAP=0
-		WRONG_REDUCE=0
-	File Input Format Counters 
-		Bytes Read=36063
-	File Output Format Counters 
-		Bytes Written=887
+ File System Counters
+  FILE: Number of bytes read=41434
+  FILE: Number of bytes written=607543
+  FILE: Number of read operations=0
+  FILE: Number of large read operations=0
+  FILE: Number of write operations=0
+  HDFS: Number of bytes read=72126
+  HDFS: Number of bytes written=887
+  HDFS: Number of read operations=13
+  HDFS: Number of large read operations=0
+  HDFS: Number of write operations=4
+ Map-Reduce Framework
+  Map input records=631
+  Map output records=1262
+  Map output bytes=18003
+  Map output materialized bytes=20533
+  Input split bytes=101
+  Combine input records=0
+  Combine output records=0
+  Reduce input groups=43
+  Reduce shuffle bytes=20533
+  Reduce input records=1262
+  Reduce output records=43
+  Spilled Records=2524
+  Shuffled Maps =1
+  Failed Shuffles=0
+  Merged Map outputs=1
+  GC time elapsed (ms)=15
+  Total committed heap usage (bytes)=553648128
+ Shuffle Errors
+  BAD_ID=0
+  CONNECTION=0
+  IO_ERROR=0
+  WRONG_LENGTH=0
+  WRONG_MAP=0
+  WRONG_REDUCE=0
+ File Input Format Counters 
+  Bytes Read=36063
+ File Output Format Counters 
+  Bytes Written=887
 Results:
-2023 industrial	4165.299994468689
-2023-01	170.90000009536743
-2023-02	134.80000066757202
-2023-03	164.59999895095825
-2023-04	167.20000076293945
-2023-05	169.5
-2023-06	162.70000076293945
-2023-07	159.5
-2023-08	168.80000019073486
-2023-09	172.00000095367432
-2023-10	168.80000019073486
-2023-11	160.0
-2023-12	53.0
-AH	21.200000762939453
-BJ	21.0
-CQ	21.100000381469727
-FJ	20.899999618530273
-GD	20.799999237060547
-GS	21.399999618530273
-GXI	298.89999866485596
-GZ	21.399999618530273
-HAIN	275.3999996185303
-HB	21.299999237060547
-HLJ	268.50000286102295
-HN	21.5
-JL	21.299999237060547
-JS	21.299999237060547
-JX	20.700000762939453
-LN	19.799999237060547
-NMG	269.50000190734863
-NX	21.100000381469727
-QH	20.5
-SC	20.899999618530273
-SD	22.100000381469727
-SH	21.0
-SHX	256.2999954223633
-SX	19.700000762939453
-TJ	20.5
-XJ	21.399999618530273
-XZ	20.899999618530273
-YN	20.799999237060547
-ZJ	20.700000762939453
-cnt	210.0
+2023 industrial 4165.299994468689
+2023-01 170.90000009536743
+2023-02 134.80000066757202
+2023-03 164.59999895095825
+2023-04 167.20000076293945
+2023-05 169.5
+2023-06 162.70000076293945
+2023-07 159.5
+2023-08 168.80000019073486
+2023-09 172.00000095367432
+2023-10 168.80000019073486
+2023-11 160.0
+2023-12 53.0
+AH 21.200000762939453
+BJ 21.0
+CQ 21.100000381469727
+FJ 20.899999618530273
+GD 20.799999237060547
+GS 21.399999618530273
+GXI 298.89999866485596
+GZ 21.399999618530273
+HAIN 275.3999996185303
+HB 21.299999237060547
+HLJ 268.50000286102295
+HN 21.5
+JL 21.299999237060547
+JS 21.299999237060547
+JX 20.700000762939453
+LN 19.799999237060547
+NMG 269.50000190734863
+NX 21.100000381469727
+QH 20.5
+SC 20.899999618530273
+SD 22.100000381469727
+SH 21.0
+SHX 256.2999954223633
+SX 19.700000762939453
+TJ 20.5
+XJ 21.399999618530273
+XZ 20.899999618530273
+YN 20.799999237060547
+ZJ 20.700000762939453
+cnt 210.0
 
 Process finished with exit code 0
 

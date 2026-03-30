@@ -1,9 +1,0 @@
-# Paths that belong to the content branch.
-# Keep this list limited to written content and content-specific data.
-source/_posts
-source/about
-source/index
-source/link
-source/fcircle
-source/_data/link.yml
-source/tree.txt
