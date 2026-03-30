@@ -81,7 +81,7 @@ Edit content here if you want to keep Markdown separate from theme and build fil
 Bring the changes back to the main branch with:
 
 \`\`\`bash
-./scripts/import-content-branch.sh $content_branch
+./tools/import-content-branch.sh $content_branch
 \`\`\`
 EOF
 

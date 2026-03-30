@@ -7,7 +7,7 @@ Fengling's free website.
 - `content`: authored Markdown and content data only
 - `gh-pages`: generated static files published by GitHub Actions
 
-Content paths are defined in `scripts/content-paths.txt`.
+Content paths are defined in `tools/content-paths.txt`.
 
 ## Content Workflow
 
@@ -17,11 +17,11 @@ Write content in the dedicated `content` worktree:
 
 When you need the Markdown files inside the `master` worktree for a local build:
 
-- Run `./scripts/import-content-branch.sh content`
+- Run `./tools/import-content-branch.sh content`
 
 If you intentionally edited imported content inside the `master` worktree and want to push it back into `content`:
 
-- Run `./scripts/export-content-branch.sh content`
+- Run `./tools/export-content-branch.sh content`
 
 ## Deploy Workflow
 

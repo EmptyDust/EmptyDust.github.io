@@ -39,7 +39,7 @@ jobs:
         run: git fetch origin content:refs/remotes/origin/content
 
       - name: 导入内容
-        run: ./scripts/import-content-branch.sh origin/content
+        run: ./tools/import-content-branch.sh origin/content
 
       - name: 安装 Anzhiyu 主题
         run: |
