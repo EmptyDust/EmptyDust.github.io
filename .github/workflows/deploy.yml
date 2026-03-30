@@ -42,9 +42,7 @@ jobs:
         run: ./tools/import-content-branch.sh origin/content
 
       - name: 安装 Anzhiyu 主题
-        run: |
-          # 只是克隆主题代码，不需要在这里 install
-          git clone -b main https://github.com/anzhiyu-c/hexo-theme-anzhiyu.git themes/anzhiyu
+        run: ./tools/prepare-anzhiyu-theme.sh
 
       - name: 安装项目依赖
         run: |

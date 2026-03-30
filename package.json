@@ -10,6 +10,7 @@
     "deploy": "hexo deploy",
     "server": "hexo server",
     "bangumi": "hexo bangumi -u",
+    "theme:prepare": "./tools/prepare-anzhiyu-theme.sh",
     "lint": "hexo check"
   },
   "hexo": {

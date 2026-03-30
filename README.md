@@ -18,6 +18,8 @@ Write content in the dedicated `content` worktree:
 When you need the Markdown files inside the `master` worktree for a local build:
 
 - Run `./tools/import-content-branch.sh content`
+- Run `./tools/prepare-anzhiyu-theme.sh`
+- Then run your usual Hexo command such as `yarn build`
 
 If you intentionally edited imported content inside the `master` worktree and want to push it back into `content`:
 
