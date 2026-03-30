@@ -1,14 +1,33 @@
 # EmptyDust.github.io
 Fengling's free website.
 
-## Content Branch Workflow
+## Branch Layout
 
-This repo can keep written content on a separate `content` branch.
+- `master`: site code, Hexo config, themes, and deployment workflow
+- `content`: authored Markdown and content data only
+- `gh-pages`: generated static files published by GitHub Actions
 
 Content paths are defined in `scripts/content-paths.txt`.
 
-- Run `./scripts/export-content-branch.sh` on `master` to refresh the `content` branch from the current branch.
-- Run `./scripts/import-content-branch.sh` on `master` to pull content changes back from the `content` branch.
-- Push the content branch with `git push origin content` when you want it on GitHub.
+## Content Workflow
 
-This avoids merging whole branches and only syncs the content directories you care about.
+Write content in the dedicated `content` worktree:
+
+- `/Users/fengling/Github/EmptyDust.github.io-content`
+
+When you need the Markdown files inside the `master` worktree for a local build:
+
+- Run `./scripts/import-content-branch.sh content`
+
+If you intentionally edited imported content inside the `master` worktree and want to push it back into `content`:
+
+- Run `./scripts/export-content-branch.sh content`
+
+## Deploy Workflow
+
+GitHub Actions now builds the site from:
+
+- the latest `master` branch for code and build configuration
+- the latest `content` branch for posts and page content
+
+The deploy workflow runs on pushes to `master` or `content`, imports `origin/content` into the checked-out `master` tree, builds the site, and publishes to `gh-pages`.

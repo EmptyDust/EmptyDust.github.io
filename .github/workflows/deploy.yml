@@ -4,25 +4,27 @@ on:
   push:
     branches:
       - master
+      - content
   release:
     types:
       - published
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     permissions:
       contents: write
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: ${{ github.workflow }}-${{ github.ref_name }}
 
     steps:
-      - name: Set Timezone
-        run: export TZ='Asia/Shanghai'
-
-      - name: 检查分支
+      - name: 检查 master 分支
         uses: actions/checkout@v6
         with:
+          ref: master
           fetch-depth: 0
 
       - name: 安装 Node
@@ -32,6 +34,12 @@ jobs:
 
       - name: 启用 Corepack (激活 Yarn 4)
         run: corepack enable
+
+      - name: 拉取内容分支
+        run: git fetch origin content:refs/remotes/origin/content
+
+      - name: 导入内容
+        run: ./scripts/import-content-branch.sh origin/content
 
       - name: 安装 Anzhiyu 主题
         run: |
@@ -57,3 +65,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          publish_branch: gh-pages

@@ -5,6 +5,8 @@
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
+    "content:export": "./scripts/export-content-branch.sh content",
+    "content:import": "./scripts/import-content-branch.sh content",
     "deploy": "hexo deploy",
     "server": "hexo server",
     "bangumi": "hexo bangumi -u",

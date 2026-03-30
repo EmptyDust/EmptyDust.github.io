@@ -107,8 +107,8 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:EmptyDust/EmptyDust.github.io/.git
-  branch: main
+  repo: git@github.com:EmptyDust/EmptyDust.github.io.git
+  branch: gh-pages
 
 pandoc:
   args:
