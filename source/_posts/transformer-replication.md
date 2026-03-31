@@ -26,14 +26,16 @@ conda install -c conda-forge datasets
 ```
 
 然后配置环境变量修改到国内镜像
+
 ```sh
 pip install -U huggingface_hub
 export HF_ENDPOINT=https://hf-mirror.com
 ```
 
-数据集：https://huggingface.co/datasets/wmt/wmt14
+数据集：<https://huggingface.co/datasets/wmt/wmt14>
 
 运行代码下载
+
 ```py
 from datasets import load_dataset
 
@@ -46,13 +48,15 @@ print(ds['train'][0:5])
 ```
 
 数据集下载在了
+
 ```
 ~/.cache/huggingface/datasets/wmt___wmt14/
 ```
 
 [本地配置](https://blog.csdn.net/CoolBoySilverBullet/article/details/123365452)
 
-## day2 
+## day2
 
-# inference
+## inference
+
 [hf-mirror （huggingface 的国内镜像）](https://blog.csdn.net/weixin_40959890/article/details/140319652)

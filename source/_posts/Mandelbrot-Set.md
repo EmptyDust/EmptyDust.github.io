@@ -9,20 +9,29 @@ cover: https://bu.dusays.com/2025/03/27/67e4bc6a6425d.jpg
 # 曼德布罗集 Mandelbrot Set
 
 ## 程序基本情况和目标
+
 1. 曼德布罗集（Mandelbrot Set）是一个集合，定义如下：
 $$ M = \{C|Z_{n+1}=Z_n^2+C,Z_0=0,Z_n,C\in\mathbb{C}\}$$
-公式解释：对一个特定的复数 $C$ ，初始 $ Z_0=0 $ ，经过 $ Z_{n+1}=Z_n^2+C $ 连续迭代后，如果 $ Z_n $ 数列收敛于 $ 0 $ 附近（不是发散到无穷远），则 $ C $ 属于曼德布罗集。 
+公式解释：对一个特定的复数 $C$ ，初始 $ Z_0=0 $ ，经过 $ Z_{n+1}=Z_n^2+C $ 连续迭代后，如果 $ Z_n $ 数列收敛于 $ 0 $ 附近（不是发散到无穷远），则 $ C $ 属于曼德布罗集。
 2. 一般可以认为，曼德布罗集中复数C的实部在 $-2.25$ 至 $0.75$ 之间，虚部在 $-1.25 $ 至 $1.25$ 之间，在进行迭代计算中，如果 $Z_n$ 和原点 $0 $ 的距离超过 $3$，认为 $Z_n$ 趋向发散，如果连续经过 $256$ 次迭代，距离仍不超过 $ 3 $，则认为 $ Z_n $ 趋向收敛（即 $C $ 属于曼德布罗集）。
 3. 由于复数可以对应到坐标平面上的点，因此曼德布罗集可以直观地使用图形来展示，目标是可视化曼德布罗集。
 
 ## 主要功能模块
+
 ### 迭代和迭代次数计算
+
 功能：输入点坐标，计算迭代次数。作业要求中已有几乎完整的迭代次数计算函数，但有一定错误和优化空间，需要阅读理解后进行更正和优化。
+
 ### RGB映射
+
 功能：在Mand06作业中，要求支持256+种颜色且低值域敏感。考虑制作一个通解的RGB非对称映射函数。
+
 ### 图像文件生成
+
 功能：如题。作业要求中已有几乎完整的图像文件生成函数，但具体的像素点RGB设置依然需要根据不同的作业要求完成。
+
 ### 输入
+
 功能：
 本作业有以下几个可能的输入：
 Mand05:
@@ -39,8 +48,11 @@ Mand06:
 因此，在可能是 z 的位置，我们需要考虑两种情况：z 或数据，考虑参考快读模板自行书写输入函数。
 
 ## 关键代码说明
+
 ### 迭代和迭代次数计算
+
 利用复数公式从 $z_n,z_{n+1}$ 迭代计算 $z_{n+2}$，根据 $|z_n|$ 计算是否收敛或迭代次数。
+
 ```cpp
 int chkIteration(struct my_complex c, int n)
 { // 给定c，最多迭代n次，返回收敛或发散情况
@@ -60,9 +72,12 @@ int chkIteration(struct my_complex c, int n)
     return -1; // 返回-1表示收敛
 }
 ```
+
 ### RGB映射
+
 [参考文献](https://blog.csdn.net/ZxqSoftWare/article/details/115519489)
 通过此文方法，将RGB三维向量对称映射到线性空间中，通过先划分区间再分别变换的方法完成了映射。
+
 ```python
 # 原程序
 _max = 0
@@ -93,7 +108,9 @@ def convert_data(_data):
     if idx == 4:
         return [255, 0, int(local_r * 255)]
 ```
+
 该程序的c语言实现:
+
 ```cpp
 void map(int it, int *r, int *g, int *b)
 {
@@ -139,10 +156,12 @@ void map(int it, int *r, int *g, int *b)
     }
 }
 ```
+
 由题意，我们应当重点关注低值域的变化，考虑非对称映射。\
 重点修改部分在 $idx$ 和 $localr$ 计算，通过改变区间大小影响了各个值域的权重。\
 经过大量测试和修改才达成了以下程序，过程可具体查看附录中RGB映射函数的过程性源代码。\
 这是一个鲁棒性很强的实现，我们只需要更改本函数的 $max,min$ 就可以极其方便地套用于其他有类似需求的程序。此外，在本程序中，也可以通过同步更改迭代函数中的最高迭代次数或在本函数中多传一个参数 $max$ （最高迭代次数）以使得图像更加精确，色彩丰富。
+
 ```cpp
 void map(int it, int *r, int *g, int *b)
 {
@@ -192,8 +211,11 @@ void map(int it, int *r, int *g, int *b)
     }
 }
 ```
+
 ### 图像文件生成
+
 为保证图像比例合理，根据 $x_1,y_1,y_2$ 直接计算 $x_2$。遍历图片所有像素点位置 $(i,j)$ ，计算出它们对应的向量 $C_{i,j}$ 代入上文迭代函数计算，得出迭代次数后使用RGB映射函数计算出对应颜色，最后调用绘点函数设置颜色。
+
 ```cpp
 // 生成图像文件fn，w列h行，坐标左界x1，右界x2，下界y1，上界y2
 void drawPicture(char *fn, int w, int h, double x1, double y1, double y2)
@@ -222,8 +244,11 @@ void drawPicture(char *fn, int w, int h, double x1, double y1, double y2)
         printf("fn=Mand06.BMP, w=%d, h=%d\nx1=%lg, x2=%lg, y1=%lg, y2=%lg, rxy=%lg\n", w, h, x1, x2, y1, y2, rxy);
 }
 ```
+
 ### 输入
+
 这是我见过最奇葩的输入要求，放个快读模板压压惊。
+
 ```cpp
 //快读模板
 char *p1,*p2,buf[100000];
@@ -240,10 +265,12 @@ int read()
     }
     while(ch>=48&&ch<=57)
         x=x*10+ch-48,ch=nc();
-   	return x*f;
+    return x*f;
 }
 ```
+
 我分别设计了 $randci$ 和 $randcf$ 两个函数来输入 $int$ 和 $double$ 类型参数，判断是否使用默认数据在 $read$ 函数种完成。
+
 ```cpp
 //for Mand05
 int randci(char s[], int i)//读取整型
@@ -289,7 +316,9 @@ void read(int *w, int *h, double *x1, double *y1, double *y2)
     *y2 = randcf(s, -1);
 }
 ```
+
 利用二维数组简便后续赋值。
+
 ```cpp
 //for Mand06
 int randci(char s[], int i)
@@ -351,9 +380,10 @@ void read(int *w, int *h, double *x1, double *y1, double *y2)
 
 ## 运行结果截图
 
-
 ## 附录：程序设计源代码
+
 ### 主程序
+
 ```cpp
 //Mand01.cpp
 #include <stdio.h>
@@ -411,6 +441,7 @@ int main(void)
 // 输入：2 -1，输出：(2,-1) (5,-5) k=2
 // 输入：1 0.5，输出：(1,0.5) (1.75,1.5) (1.8125,5.75) k=3
 ```
+
 ```cpp
 //Mand03.cpp
 #include "mybmp.h" //包含图像生成资源库
@@ -511,6 +542,7 @@ int main(void)
     return 0;
 }
 ```
+
 ```cpp
 //Mand05.cpp
 #include "mybmp.h" //包含图像生成资源库
@@ -631,6 +663,7 @@ int main(void)
     return 0;
 }
 ```
+
 ```cpp
 //Mand06.cpp
 #include "mybmp.h" //包含图像生成资源库
@@ -808,7 +841,9 @@ int main(void)
     return 0;
 }
 ```
+
 ### RGB映射函数的过程性源代码
+
 ```cpp
 //map-1.cpp
 #include <stdio.h>
@@ -866,6 +901,7 @@ int main()
     return 0;
 }
 ```
+
 ```cpp
 //map-2.cpp
 #include <stdio.h>
@@ -924,6 +960,7 @@ int main()
     return 0;
 }
 ```
+
 ```cpp
 //map-3.cpp
 #include <stdio.h>
@@ -985,6 +1022,7 @@ int main()
     return 0;
 }
 ```
+
 ```cpp
 //map-4.cpp
 void map(int it, int *r, int *g, int *b)
@@ -1044,6 +1082,7 @@ int main()
     return 0;
 }
 ```
+
 ```cpp
 //map-5.cpp
 void map(int it, int *r, int *g, int *b)
@@ -1103,7 +1142,9 @@ int main()
     return 0;
 }
 ```
+
 ## 其他
+
 编写使用vscode;\
 调试使用devc++;\
 编译使用VS2022,工程文件保存为Mandelbrot Set.zip.

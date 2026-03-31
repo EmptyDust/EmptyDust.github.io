@@ -8,9 +8,11 @@ cover: https://bu.dusays.com/2026/02/27/69a1a4e6d3c28.png
 20260227 正月初十
 
 ## background
+
 笔者大三，此前曾学过线性代数，95分，但差不多忘完了，出于学期初要考个线性代数A、考研及其他需要，因此将拜读Linear-Algebra-Done-Right这篇神作。
 
 ## plan
+
 每天花费两小时左右学习。
 
 本书引言中曾写道：
