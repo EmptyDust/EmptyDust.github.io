@@ -1,0 +1,25 @@
+- creativity_list:
+    - name: C++
+      color: "#00599C"
+      icon: https://cdn.simpleicons.org/cplusplus/white
+    - name: Python
+      color: "#3776AB"
+      icon: https://cdn.simpleicons.org/python/white
+    - name: Java
+      color: "#F89820"
+      icon: https://cdn.simpleicons.org/openjdk/white
+    - name: Go
+      color: "#00ADD8"
+      icon: https://cdn.simpleicons.org/go/white
+    - name: Git
+      color: "#F05032"
+      icon: https://cdn.simpleicons.org/git/white
+    - name: Linux
+      color: "#111111"
+      icon: https://cdn.simpleicons.org/linux/white
+    - name: Markdown
+      color: "#000000"
+      icon: https://cdn.simpleicons.org/markdown/white
+    - name: GitHub
+      color: "#181717"
+      icon: https://cdn.simpleicons.org/github/white

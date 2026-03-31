@@ -1,0 +1,60 @@
+- title: 闲言碎语
+  subTitle: 记录那些一闪而过、又迟迟不肯消失的念头。
+  tips: 随时随地，写下一点生活
+  buttonText: 关于我
+  buttonLink: /about/
+  limit: 12
+  home_essay: true
+  top_background: https://bu.dusays.com/2025/03/21/67dc3ca22d617.jpg
+  essay_list:
+    - content: 起名是一件有趣的事，名字或许确实可以影响一部分人生。
+      date: 2026/02/17 23:23:09
+      image:
+        - https://bu.dusays.com/2026/02/21/6999ad42427eb.jpeg
+      from: 风铃
+      link: /2026/02/17/essay001/
+    - content: 林花谢了春红，太匆匆。无奈朝来寒雨晚来风。
+      date: 2026/02/18 09:28:48
+      image:
+        - https://bu.dusays.com/2026/02/21/6999ad55ef4e8.jpeg
+      from: 李煜
+      link: /2026/02/18/essay002/
+    - content: 想成为卡门线上的花，但背后是无数拜科努尔的沙。
+      date: 2026/02/19 20:40:37
+      image:
+        - https://bu.dusays.com/2026/02/19/699706a8e7784.png
+      from: 风铃
+      link: /2026/02/19/essay003/
+    - content: 末班车旁只剩一人，霓虹残影亦陪我在等。
+      date: 2026/02/21 09:55:51
+      image:
+        - https://bu.dusays.com/2026/02/21/6999129487161.png
+      address: 南京
+      from: 风铃
+      link: /2026/02/21/essay004/
+    - content: 我总说我 18 岁以前活在梦里，如今才发现我一直都活在梦里。
+      date: 2026/02/21 17:56:38
+      from: 白日梦想家
+      link: /2026/02/21/daydreamer/
+    - content: 一叶曲折过后，又一道坎坷。走不出，看不破。
+      date: 2026/02/25 22:08:14
+      image:
+        - https://bu.dusays.com/2026/02/27/69a19a788dc2b.png
+      from: 一程山路
+      link: /2026/02/25/essay006/
+    - content: 可是我偏偏就是不想要转弯，就算不开灯的房间真的有些暗。
+      date: 2026/02/27 21:18:55
+      image:
+        - https://bu.dusays.com/2026/02/27/69a19a788dc2b.png
+      from: 呓语
+      link: /2026/02/27/essay007/
+    - content: 那么多的山，那么寂静的江水，日日夜夜的船看着彼此，他们会想些什么呢？
+      date: 2026/02/28 19:39:03
+      from: 风铃
+      link: /2026/02/28/essay008/
+    - content: 思考不能代替体验。多想一点，多做一点，选择一个开心的活法吧。
+      date: 2026/03/04 09:17:47
+      image:
+        - https://bu.dusays.com/2026/03/04/69a78a0a96526.jpeg
+      from: 风铃
+      link: /2026/03/04/essay009/

@@ -1,0 +1,95 @@
+- class_name: 关于页
+  subtitle: 念念不忘，必有回响
+  avatarImg: https://bu.dusays.com/2025/03/20/67dbbc5c11145.png
+  avatarSkills:
+    left:
+      - 🤖️ AI 与数学
+      - 🧠 喜欢思考
+      - 📚 持续阅读
+      - 🎯 算法竞赛
+    right:
+      - 写代码也写文字 ✍️
+      - 脚踏实地行动派 🏃
+      - 对世界保持好奇 🔭
+      - 做梦也想把事做成 🌌
+  name: Fengling
+  description: 上海学生、博主、算法竞赛与 AI 爱好者
+  aboutsiteTips:
+    tips: 追求
+    title1: 源于热爱
+    title2: 也落回日常
+    word:
+      - 数学
+      - AI
+      - 编程
+      - 思考
+  helloAbout: Hello there!
+  skillsTips:
+    tips: 技能
+    title: 让想法落地
+  careers:
+    tips: 轨迹
+    title: 还在继续生长
+    list:
+      - desc: 学生，正在完成自己的大学阶段
+        color: "#357ef5"
+      - desc: 长期关注算法竞赛、系统与工程实践
+        color: "#f7b955"
+      - desc: 正在认真靠近 AI、量化与更大的世界
+        color: "#34a853"
+    img: https://bu.dusays.com/2025/03/21/67dc3ca22d617.jpg
+  map:
+    title: 我现在住在
+    StrengthenTitle: 中国，上海
+    background: https://bu.dusays.com/2025/03/21/67dc3ca22d617.jpg
+    backgroundDark: https://bu.dusays.com/2025/03/20/67dbbc5e48863.jpg
+  selfInfo:
+    selfInfoTips1: 所在地
+    selfInfoContentYear: 上海
+    selfInfoTips2: 当前阶段
+    selfInfoContent2: 本科在读
+    selfInfoTips3: 主要方向
+    selfInfoContent3: 算法竞赛 / AI / 数学
+  personalities:
+    author_name: Fengling
+    personality_type: 持续探索中
+    photo_url: https://bu.dusays.com/2025/03/20/67dbbc5c11145.png
+    personality_img: https://bu.dusays.com/2025/03/20/67dbbc5c11145.png
+    name_url: https://www.16personalities.com/zh-hans
+    personality_type_color: "#425AEF"
+  maxim:
+    maxim_tips: 座右铭
+    maxim_top: 念念不忘，
+    maxim_bottom: 必有回响。
+  buff:
+    buff_tips: 特长
+    buff_top: 在理想和现实之间
+    buff_bottom: 反复搭桥的人
+  game:
+    game_tips: 兴趣领域
+    game_title: ACGN / 围棋 / 写作
+    game_uid: "以及很多漫长的白日梦"
+    game_bg: https://bu.dusays.com/2026/02/21/6999ad42427eb.jpeg
+  comic:
+    comic_tips: 最近在看
+    comic_title: Bangumi 片单
+    comic_list:
+      - name: 赛博浪客
+        href: https://bangumi.tv/subject/309311
+        cover: https://lain.bgm.tv/r/400/pic/cover/l/39/83/309311_dJU58.jpg
+      - name: CLANNAD
+        href: https://bangumi.tv/subject/51
+        cover: https://lain.bgm.tv/r/400/pic/cover/l/28/38/51_z0Ly8.jpg
+      - name: 四月是你的谎言
+        href: https://bangumi.tv/subject/100444
+        cover: https://lain.bgm.tv/r/400/pic/cover/l/ec/c7/100444_96r3J.jpg
+  like:
+    like_tips: 关注偏好
+    like_title: 技术、哲学与更大的问题
+    like_bg: https://bu.dusays.com/2025/03/20/67dbbc5e48863.jpg
+    like_bottom: 喜欢那些能改变自己看世界方式的内容
+  music:
+    music_tips: 音乐偏好
+    music_title: 华语流行 / 民谣 / 氛围感
+    music_bg: https://bu.dusays.com/2025/03/21/67dc3ca22d617.jpg
+    music_link: /
