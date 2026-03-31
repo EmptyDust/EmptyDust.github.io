@@ -2,8 +2,17 @@
 # Keep this list limited to written content and content-specific data.
 source/_posts
 source/about
+source/categories
+source/cookies
+source/copyright
+source/essay
 source/index
 source/link
 source/fcircle
+source/privacy
+source/tags
+source/_data/about.yml
+source/_data/creativity.yml
+source/_data/essay.yml
 source/_data/link.yml
 source/tree.txt
