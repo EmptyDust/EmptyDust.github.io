@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref_name }}
 
@@ -44,83 +46,21 @@ jobs:
 
       - name: 安装项目依赖
         run: |
+          # 这一步会根据新的 package.json 安装所有东西
+          # 包括：hexo核心、渲染器(pug/stylus)、gulp、bangumi插件
           yarn install --immutable
-
-      - name: 校验 Rainyun 部署参数
-        env:
-          RAINYUN_HOST: ${{ secrets.RAINYUN_HOST }}
-          RAINYUN_PORT: ${{ secrets.RAINYUN_PORT }}
-          RAINYUN_USER: ${{ secrets.RAINYUN_USER }}
-          RAINYUN_TARGET_DIR: ${{ secrets.RAINYUN_TARGET_DIR }}
-          RAINYUN_SSH_KEY: ${{ secrets.RAINYUN_SSH_KEY }}
-        run: |
-          for key in RAINYUN_HOST RAINYUN_USER RAINYUN_TARGET_DIR RAINYUN_SSH_KEY; do
-            if [ -z "${!key}" ]; then
-              echo "::error::缺少 GitHub Secret: ${key}"
-              exit 1
-            fi
-          done
-
-          if [ -z "${RAINYUN_PORT}" ]; then
-            echo "RAINYUN_PORT 未配置，使用默认端口 22"
-          fi
-
-      - name: 覆盖站点 URL
-        env:
-          SITE_URL: ${{ secrets.SITE_URL }}
-          SITE_ROOT: ${{ secrets.SITE_ROOT }}
-        run: |
-          if [ -z "${SITE_URL}" ] && [ -z "${SITE_ROOT}" ]; then
-            exit 0
-          fi
-
-          node <<'EOF'
-          const fs = require('fs');
-          const path = '_config.yml';
-          let text = fs.readFileSync(path, 'utf8');
-
-          if (process.env.SITE_URL) {
-            text = text.replace(/^url:\s*.*/m, `url: ${process.env.SITE_URL}`);
-          }
-
-          if (process.env.SITE_ROOT) {
-            text = text.replace(/^root:\s*.*/m, `root: ${process.env.SITE_ROOT}`);
-          }
-
-          fs.writeFileSync(path, text);
-          EOF
 
       - name: 生成静态文件
         run: |
           npx hexo clean
           npx hexo bangumi -u
           npx hexo generate
+          # 如果以后需要 gulp，取消注释即可，不需要再安装 gulp-cli
+          # npx gulp 
 
-      - name: 加载 SSH 私钥
-        uses: webfactory/ssh-agent@v0.9.1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          ssh-private-key: ${{ secrets.RAINYUN_SSH_KEY }}
-
-      - name: 写入 known_hosts
-        env:
-          RAINYUN_HOST: ${{ secrets.RAINYUN_HOST }}
-          RAINYUN_PORT: ${{ secrets.RAINYUN_PORT }}
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan -p "${RAINYUN_PORT:-22}" -H "${RAINYUN_HOST}" >> ~/.ssh/known_hosts
-
-      - name: 部署到 Rainyun
-        env:
-          RAINYUN_HOST: ${{ secrets.RAINYUN_HOST }}
-          RAINYUN_PORT: ${{ secrets.RAINYUN_PORT }}
-          RAINYUN_USER: ${{ secrets.RAINYUN_USER }}
-          RAINYUN_TARGET_DIR: ${{ secrets.RAINYUN_TARGET_DIR }}
-          RAINYUN_POST_DEPLOY: ${{ secrets.RAINYUN_POST_DEPLOY }}
-        run: |
-          ssh -p "${RAINYUN_PORT:-22}" "${RAINYUN_USER}@${RAINYUN_HOST}" "mkdir -p '${RAINYUN_TARGET_DIR}'"
-          rsync -az --delete -e "ssh -p ${RAINYUN_PORT:-22}" ./public/ "${RAINYUN_USER}@${RAINYUN_HOST}:${RAINYUN_TARGET_DIR}/"
-
-          if [ -n "${RAINYUN_POST_DEPLOY}" ]; then
-            ssh -p "${RAINYUN_PORT:-22}" "${RAINYUN_USER}@${RAINYUN_HOST}" "${RAINYUN_POST_DEPLOY}"
-          fi
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages

@@ -111,8 +111,11 @@ ignore:
 theme: anzhiyu
 
 # Deployment
-## Production deployment is handled by GitHub Actions and synced to Rainyun via SSH/rsync.
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
+  type: git
+  repo: git@github.com:EmptyDust/EmptyDust.github.io.git
+  branch: gh-pages
 
 pandoc:
   args:
