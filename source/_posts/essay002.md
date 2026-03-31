@@ -1,6 +1,7 @@
 ---
 title: 002-自是人生长恨水长东
 date: 2026-02-18 09:28:48
+essay: true
 tags: essay
 cover: https://bu.dusays.com/2026/02/21/6999ad55ef4e8.jpeg
 ---

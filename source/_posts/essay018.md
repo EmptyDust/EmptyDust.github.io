@@ -1,6 +1,7 @@
 ---
 title: 018-下一次意外
 date: 2026-03-25 10:06:34
+essay: true
 tags: essay
 ---
 

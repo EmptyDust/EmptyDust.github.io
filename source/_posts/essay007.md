@@ -1,6 +1,7 @@
 ---
 title: essay007-小王
 date: 2026-02-27 21:18:55
+essay: true
 tags:
 cover: https://bu.dusays.com/2026/02/27/69a19a788dc2b.png
 ---

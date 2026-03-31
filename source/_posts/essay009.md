@@ -1,6 +1,7 @@
 ---
 title: 009-我要去哪儿
 date: 2026-03-04 09:17:47
+essay: true
 tags:
 cover: https://bu.dusays.com/2026/03/04/69a78a0a96526.jpeg
 ---
@@ -14,4 +15,3 @@ cover: https://bu.dusays.com/2026/03/04/69a78a0a96526.jpeg
 多远都可以，
 都无所谓，
 选择一个开心的活法吧~
-

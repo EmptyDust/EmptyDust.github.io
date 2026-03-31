@@ -1,6 +1,7 @@
 ---
 title: 白日梦想家
 date: 2026-02-21 17:56:38
+essay: true
 tags:
 ---
 

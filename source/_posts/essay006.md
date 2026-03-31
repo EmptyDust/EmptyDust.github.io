@@ -1,6 +1,7 @@
 ---
 title: 006-走不出 看不破
 date: 2026-02-25 22:08:14
+essay: true
 tags:
 cover: https://bu.dusays.com/2026/02/27/69a19a788dc2b.png
 ---

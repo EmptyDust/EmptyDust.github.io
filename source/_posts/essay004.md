@@ -1,6 +1,7 @@
 ---
 title: 004-南京夜无电波讯号
 date: 2026-02-21 09:55:51
+essay: true
 tags:
 cover: https://bu.dusays.com/2026/02/21/6999129487161.png
 ---

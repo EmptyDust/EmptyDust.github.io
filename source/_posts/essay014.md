@@ -1,6 +1,7 @@
 ---
 title: 014-痛苦而非生命
 date: 2026-03-14 20:16:58
+essay: true
 tags: essay
 ---
 
