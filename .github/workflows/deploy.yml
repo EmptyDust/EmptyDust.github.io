@@ -32,8 +32,10 @@ jobs:
         with:
           node-version: "22.x"
 
-      - name: 启用 Corepack (激活 Yarn 4)
-        run: corepack enable
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.1
 
       - name: 拉取内容分支
         run: git fetch origin content:refs/remotes/origin/content
@@ -48,7 +50,7 @@ jobs:
         run: |
           # 这一步会根据新的 package.json 安装所有东西
           # 包括：hexo核心、渲染器(pug/stylus)、gulp、bangumi插件
-          yarn install --immutable
+          pnpm install --frozen-lockfile
 
       - name: 生成静态文件
         run: |
