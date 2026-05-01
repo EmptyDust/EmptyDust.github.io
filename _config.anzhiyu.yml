@@ -882,9 +882,9 @@ aside:
 # busuanzi count for PV / UV in site
 # 访问人数
 busuanzi:
-  site_uv: false
-  site_pv: false
-  page_pv: false
+  site_uv: true
+  site_pv: true
+  page_pv: true
 
 # Time difference between publish date and now (网页运行时间)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
@@ -1296,7 +1296,7 @@ CDN:
   custom_format: # https://npm.elemecdn.com/${name}@latest/${file}
 
   option:
-    busuanzi: /js/busuanzi.pure.mini.min.js
+    busuanzi: https://jsd.dusays.com/npm/penndu@17.0.0/bsz.js
     # main_css:
     # main:
     # utils:
