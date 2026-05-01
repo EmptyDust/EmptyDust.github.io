@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://emptydust.github.io/2024/12/28/transformer-replication/</loc>
+    <loc>https://emptydust.github.io/privacy/index.html</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -11,7 +11,52 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/categories/index.html</loc>
+    <loc>https://emptydust.github.io/tags/index.html</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2025/05/21/os-7/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2025/04/23/os_0/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2025/05/22/os-8/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2026/02/14/research-notes/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2024/12/28/transformer-replication/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -38,6 +83,15 @@
   </url>
   
   <url>
+    <loc>https://emptydust.github.io/categories/index.html</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://emptydust.github.io/copyright/index.html</loc>
     
     <lastmod>2026-05-01</lastmod>
@@ -47,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/fcircle/index.html</loc>
+    <loc>https://emptydust.github.io/essay/index.html</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -56,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/essay/index.html</loc>
+    <loc>https://emptydust.github.io/fcircle/index.html</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -83,16 +137,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/privacy/index.html</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/tags/index.html</loc>
+    <loc>https://emptydust.github.io/2025/09/21/BigData1/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -128,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2025/11/20/BigDataBigHomework/</loc>
+    <loc>https://emptydust.github.io/2025/12/11/BigData7/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -137,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/02/27/Linear-Algebra-Done-Right-note-1/</loc>
+    <loc>https://emptydust.github.io/2025/11/20/BigDataBigHomework/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -155,15 +200,6 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2025/12/11/BigData7/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://emptydust.github.io/2026/02/17/Princeton-calculus-Reader-revised-edition-note-1/</loc>
     
     <lastmod>2026-05-01</lastmod>
@@ -173,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/02/19/Princeton-calculus-Reader-revised-edition-note-3/</loc>
+    <loc>https://emptydust.github.io/2026/02/18/Princeton-calculus-Reader-revised-edition-note-2/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -182,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/02/18/Princeton-calculus-Reader-revised-edition-note-2/</loc>
+    <loc>https://emptydust.github.io/2026/02/19/Princeton-calculus-Reader-revised-edition-note-3/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -281,15 +317,6 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/02/21/essay004/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://emptydust.github.io/2026/02/18/essay002/</loc>
     
     <lastmod>2026-05-01</lastmod>
@@ -317,15 +344,6 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/02/27/essay007/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://emptydust.github.io/2026/02/25/essay006/</loc>
     
     <lastmod>2026-05-01</lastmod>
@@ -335,7 +353,16 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/03/04/essay009/</loc>
+    <loc>https://emptydust.github.io/2026/02/21/essay004/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2026/02/27/essay007/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -362,7 +389,16 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/03/09/essay011/</loc>
+    <loc>https://emptydust.github.io/2026/02/27/Linear-Algebra-Done-Right-note-1/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2026/03/04/essay009/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -380,25 +416,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/03/14/essay014/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2026/03/18/essay015/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2026/03/19/essay016/</loc>
+    <loc>https://emptydust.github.io/2026/03/09/essay011/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -416,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/03/20/essay017/</loc>
+    <loc>https://emptydust.github.io/2026/03/14/essay014/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -425,7 +443,25 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2026/03/25/essay018/</loc>
+    <loc>https://emptydust.github.io/2026/03/19/essay016/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2026/03/18/essay015/</loc>
+    
+    <lastmod>2026-05-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emptydust.github.io/2026/03/20/essay017/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -452,7 +488,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2025/03/22/first-time-k-song/</loc>
+    <loc>https://emptydust.github.io/2024/12/28/hello-world/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -461,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2024/12/28/hello-world/</loc>
+    <loc>https://emptydust.github.io/2026/03/25/essay018/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
@@ -479,43 +515,7 @@
   </url>
   
   <url>
-    <loc>https://emptydust.github.io/2025/05/21/os-7/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2025/05/22/os-8/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2025/04/23/os_0/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2026/02/14/research-notes/</loc>
-    
-    <lastmod>2026-05-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://emptydust.github.io/2025/09/21/BigData1/</loc>
+    <loc>https://emptydust.github.io/2025/03/22/first-time-k-song/</loc>
     
     <lastmod>2026-05-01</lastmod>
     
